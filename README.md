@@ -82,7 +82,7 @@ Query: 空欄
 
 ８，６の画像下部のAddを押します。
 
-gazouoku
+![](https://user-images.githubusercontent.com/46545607/150074064-2ff7cf34-d2a6-4466-9ec8-ca3a68d2ef0a.png)
 
 設定値は次のとおりです。
 
@@ -94,4 +94,16 @@ Match
 
 Replace
 
- Value
+ Value: [https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0/dcha_state_3_changer_1.0.apk](https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0/dcha_state_3_changer_1.0.apk)
+
+Repace All選択
+
+設定後OKを押します。
+
+９，Help→SSL Proxying→Save Charles Root Certificateから証明書ファイルを保存します。保存場所はわかりやすい場所にしてください。
+
+１０，保存した証明書の拡張子を.pemから.cerに変更します。Windowsで拡張子が表示されない人は「windows　拡張子　表示」と検索してください。
+
+１１，チャレンジパッドとPCをUSB接続します。チャレンジパッドの通知領域に「Androidシステム　この端末をUSBで充電中」と表示されているのでタップしてUSBの設定を開きます。「USBの使用」の項目で「ファイル転送」を選択してください。
+
+１２．PCのファイルマネージャーにチャレンジパッドが表示されます。先程保存した証明書ファイルを「チャレンジパッド→内部共有ストレージ」にコピーしてください。
