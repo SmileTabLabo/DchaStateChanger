@@ -1,14 +1,16 @@
 # Cpad\_dcha\_3\_changer
 
-書きかけです。
+## 警告
 
-必要なもの
+このツールの使用によって起きた損害については保証しません。
+
+## 必要なもの
 
 *   チャレンジパッドNEO(それ以前の機種はもっと楽に改造できます。自分で調べてください。)
 *   Windows,Linux,Mac OS搭載のPC(FreeBSDではできるかわかりません。)
 *   USB Type B Miniケーブル
 
-準備
+## 準備
 
 １，Charlesを以下のURLからインストールします。
 
@@ -26,7 +28,7 @@
 
 例：192.168.11.30
 
-使い方
+## インストール
 
 １，まずPCでCharlesを開きます。
 
@@ -152,6 +154,8 @@ Repace All選択
 
 ２３，アップデートの赤い進捗バーが１００％になると以下のような画面が出ます。dcha state を３にすることに成功しました。
 
+![](https://user-images.githubusercontent.com/46545607/150080601-4ed2327d-710e-4d9f-b710-cf26e6081063.jpg)
+
 ※ユーザー情報入力画面やエラーが出た場合は設定にミスがあります。戻って確認してください。
 
 ２４，ステータスバーから設定を開き、以下のように開発者向けオプションを開きます。
@@ -174,8 +178,24 @@ CPad Customize Tool
 
 Nova Launcher
 
+[https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher)
+
+Aurora store for NEO
+
+https://ctabwiki.nerrog.net/?neo-aurora
+
 ２７,ダウンロードしたapkのあるディレクトリで以下のコマンドを実行します。
 
-adb install apkのファイル名
+adb install それぞれのapkのファイル名
+
+adb shell dpm set-device-owner com.aurora.store/.data.receiver.AdministratorReceiver
 
 ※adbコマンドがない場合はインストールしてください。入れ方は各自調べてください。
+
+28,チャレンジパッドのホームボタンを押してNova launcherを選択します。
+
+２９，ランチャーからカスタマイズツールを開きます。
+
+３０．システムUIを学習用に変更とナビゲーションバーの表示を維持とデバイス管理者を有効にするをオンにします。
+
+３１，これで改造完了です。
