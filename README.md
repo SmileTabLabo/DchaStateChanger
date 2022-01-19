@@ -79,3 +79,19 @@ Path: rel/A/sp\_84/open/TouchSetupLogin.apk
 Query: 空欄
 
 設定後OKを押します。
+
+８，６の画像下部のAddを押します。
+
+gazouoku
+
+設定値は次のとおりです。
+
+Type: URL
+
+Match
+
+ Value: [https://townak.benesse.ne.jp/rel/A/sp_84/open/TouchSetupLogin.apk](https://townak.benesse.ne.jp/rel/A/sp_84/open/TouchSetupLogin.apk)
+
+Replace
+
+ Value
