@@ -98,7 +98,7 @@ Match
 
 Replace
 
- Value: [https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0/dcha_state_3_changer_1.0.apk](https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0/dcha_state_3_changer_1.0.apk)
+ Value: https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver2.1/dcha.state.3.changer_2.1.apk
 
 Repace All選択
 
