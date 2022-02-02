@@ -43,7 +43,7 @@ ver 2.1にはバグがあります。使用できないためver 1.0を使用し
 
 設定が終わったらOKを押します。
 
-３，Tools→Access control settingsを開きます。
+３，Proxy→Access control settingsを開きます。
 
 ![](https://user-images.githubusercontent.com/46545607/150070951-0e2c40dc-e021-4ec9-8a11-9ff7a34e9c1c.png)
 
