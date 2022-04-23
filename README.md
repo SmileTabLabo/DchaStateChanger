@@ -4,30 +4,20 @@
 
 このツールの使用によって起きた損害については保証しません。
 
-ver 2.1にはバグがあります。使用できないためver 1.0を使用してください。
+ver 2.1は初期設定からは使用できないためver 1.0を使用してください。
 ## 必要なもの
 
-*   チャレンジパッドNEO(それ以前の機種はもっと楽に改造できます。自分で調べてください。)
+*   チャレンジパッドNEO/NEXT(それ以前の機種はもっと楽に改造できます。自分で調べてください。)
 *   Windows,Linux,Mac OS搭載のPC(FreeBSDではできるかわかりません。)
 *   USB Type B Miniケーブル
 
 ## 準備
 
-１，Charlesを以下のURLからインストールします。
+Charlesを以下のURLからインストールします。
 
 [https://www.charlesproxy.com/download/](https://www.charlesproxy.com/download/)
 
 無料版と有料版がありますが無料版で問題ありません。無料版は３０分で強制終了されるのでその都度再起動してください。設定は保存されるので手順を遡る必要はありません。
-
-２，初期化済みチャレンジパッドNEOの電源を入れ、PCと同じwi-fiに接続します。
-
-３，チャレンジパッドのipアドレスを調べます。設定アプリを開き、以下のように開きます。
-
-設定→ネットワークとインターネット→Wi-Fi→Wi-Fi設定→詳細設定
-
-そこにIPアドレスという項目があります。192.168.から始まる行をメモしておいてください。
-
-例：192.168.11.30
 
 ## インストール
 
@@ -43,160 +33,167 @@ ver 2.1にはバグがあります。使用できないためver 1.0を使用し
 
 設定が終わったらOKを押します。
 
-３，Proxy→Access control settingsを開きます。
+３，Proxy→SSL Proxying Settingsを開き、画像のように設定します。
 
-![](https://user-images.githubusercontent.com/46545607/150070951-0e2c40dc-e021-4ec9-8a11-9ff7a34e9c1c.png)
-
-Addを押して先程調べたIPアドレスを入力します。ここでは192.168.11.30です。
-
-入力後はOKを押します。
-
-４，Proxy→SSL Proxying Settingsを開き、画像のように設定します。
+![](https://user-images.githubusercontent.com/52069677/164899196-0ddab9ba-6dae-489a-ba90-b8b108ad7a29.png)
 
 ![](https://user-images.githubusercontent.com/46545607/150072166-354e90b7-f560-4913-8af9-a7db4876e859.png)
 
 設定後OKを押します。
 
-５，Tools→Rewriteを開きます。
+４，Tools→Rewriteを開きます。
 
 ![](https://user-images.githubusercontent.com/46545607/150072490-991cc50a-9941-46b0-a795-0c2e254244e2.png)
 
-６，Addを押してUntitled Setを追加後Untitled Setを選択します。
+Addを押してUntitled Setを追加後Untitled Setを選択します。
 
+５，下の画像のような画面が出るので、上部のAddを押します。
 ![](https://user-images.githubusercontent.com/46545607/150072831-16124fc9-641c-4610-9276-abaa24988852.png)
 
-７，上の画像のような画面が出るので、上部のAddを押します。
-
+下の画像のように設定します。<br>
 ![](https://user-images.githubusercontent.com/46545607/150072963-1fa59517-96c2-4eab-9ec3-3b216d343536.png)
 
-上の画像のように設定します。設定値は次のとおりです。
-
+設定値は次のとおりです。
+```
 Protocol: https
 
 Host: townak.benesse.ne.jp
 
 Port: 443
 
-Path: rel/A/sp\_84/open/TouchSetupLogin.apk
+Path: rel/A/sp_84/open/TouchSetupLogin.apk
 
-Query: 空欄
-
+Query: (空欄)
+```
 設定後OKを押します。
 
-８，６の画像下部のAddを押します。
+６，５の画像下部のAddを押します。
 
 ![](https://user-images.githubusercontent.com/46545607/150074064-2ff7cf34-d2a6-4466-9ec8-ca3a68d2ef0a.png)
 
 設定値は次のとおりです。
-
+```
 Type: URL
 
 Match
 
- Value: [https://townak.benesse.ne.jp/rel/A/sp_84/open/TouchSetupLogin.apk](https://townak.benesse.ne.jp/rel/A/sp_84/open/TouchSetupLogin.apk)
+ Value: https://townak.benesse.ne.jp/rel/A/sp_84/open/TouchSetupLogin.apk
 
 Replace
 
- Value: [https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0/dcha_state_3_changer_1.0.apk](https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0/dcha_state_3_changer_1.0.apk)
-
-Repace All選択
+ Value: https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0/dcha_state_3_changer_1.0.apk
+```
+Repace Allを選択
 
 設定後OKを押します。
 
-９，Help→SSL Proxying→Save Charles Root Certificateから証明書ファイルを保存します。保存場所はわかりやすい場所にしてください。
+８，Help→SSL Proxying→Save Charles Root Certificateからファイルのタイプを｢Binary certificate (.cer)｣にしてから証明書ファイルを保存します。<br>
+![](https://user-images.githubusercontent.com/52069677/164907250-9a3b0ebc-d761-412d-b573-50b41dc855b8.png)<br>
+保存場所はわかりやすい場所にしてください。
 
-１０，保存した証明書の拡張子を.pemから.cerに変更します。Windowsで拡張子が表示されない人は「windows　拡張子　表示」と検索してください。
-
-１１，Help→Local IP Addressesを開きPCのIPアドレスをメモします。192.168.で始まるものが必要です。
+９，Help→Local IP Addressesを開きPCのIPアドレスをメモします。192.168.で始まるものが必要です。
 
 ![](https://user-images.githubusercontent.com/46545607/150076625-62e2fc3f-8d75-4fc3-8f99-d543ef76d892.png)
 
 この場合は192.168.11.9です。
 
-１2，チャレンジパッドとPCをUSB接続します。チャレンジパッドの通知領域に「Androidシステム　この端末をUSBで充電中」と表示されているのでタップしてUSBの設定を開きます。「USBの使用」の項目で「ファイル転送」を選択してください。
+１０，チャレンジパッドとPCをUSB接続します。チャレンジパッドの通知領域に「Androidシステム・この端末を USB で充電中」と表示されているのでタップしてUSBの設定を開きます。
+![](https://user-images.githubusercontent.com/52069677/164910761-156ca2b0-11e3-4f51-9832-1ea2128c834b.png)<br>
 
-１3．PCのファイルマネージャーにチャレンジパッドが表示されます。先程保存した証明書ファイルを「チャレンジパッド→内部共有ストレージ」にコピーしてください。
+「USB の使用」の項目で「ファイル転送」を選択してください。<br>
+![](https://user-images.githubusercontent.com/52069677/164909609-7326b7d8-7b8d-4a6b-8ec8-0fa649316f3e.png)
 
-１4，チャレンジパッドの設定から次のように開きます。
+１１．PCのエクスプローラーにチャレンジパッドが表示されます。先程保存した証明書ファイルを「チャレンジパッド→内部共有ストレージ」にコピーしてください。
 
-設定→ネットワークとインターネット→Wi-Fi→（接続中のWi-FiのSSID名）→右上編集ボタン（ペンの形）→詳細設定
+１２，チャレンジパッドの設定から次のように開きます。
 
-１５，プロキシを「なし」から手動に設定します。設定項目は以下のとおりです。
-
-プロキシのホスト名:先程調べたPCのIPアドレス。
-
-プロキシポート: 8888
-
-プロキシをバイパス: 空欄
-
-設定後は保存をタップします。
-
-１６，Wi-Fi一覧画面に戻ってWi-Fi設定→詳細設定→証明書のインストールを開きます。
+設定→ネットワークとインターネット→Wi-Fi→Wi-Fi 設定→詳細設定→証明書のインストール を開きます。
 
 左側のメニューを開きTAB-A05-BDを開きます。（チャレンジパッドNEOの場合の表記）。
 
-指紋アイコンの証明書ファイルがあるので選択します。
+先程コピーした証明書ファイルがあるので選択します。
 
-１７，「証明書の名前を指定する」といったダイアログが開くので名前を何でも良いのでつけてOKを押します。
+「証明書の名前を指定する」といったダイアログが開くので名前を何でも良いのでつけてOKを押します。
+｢VPNとアプリ｣のまま変更しないでください。
 
-１８，パスワード設定を要求されるので設定します。
+パスワード設定を要求されるので設定します。
 
-１９，設定トップ画面に戻り、次のように開きます。
+１３，証明書がインストール出来たら１つ前の画面に戻り、Wi-Fi の使用 を有効にします。
+次に、接続するWi-FiのSSID名を選択して、詳細設定→プロキシ を「なし」から｢手動｣に設定します。
+設定項目は以下のとおりです。
+```
+プロキシのホスト名: 先程調べたPCのIPアドレス
 
-設定→セキュリティと現在地情報→画面ロック
+プロキシポート: 8888
 
-パスワードが要求されるので入力後「なし」を選択します。
+プロキシをバイパス: (空欄)
+```
+設定後は保存をタップします。
 
-２０，ホーム画面に戻り、スタートボタンを押します。
+１４，Charlesで Connection from ～と表示されるので、｢Accept｣を押します。
+![](https://user-images.githubusercontent.com/52069677/164911402-8e4f994e-8871-4fea-9f5e-1b811dfd58ee.png)<br>
+※ 10.0.0.8 の部分はチャレパ側のIPアドレスなので、環境により異なります。<br>
+また、これが出てこなかった場合は どこか手順を間違えているか、パソコンやルーターの設定でセパレータが動作している可能性があります。
 
-![](https://user-images.githubusercontent.com/46545607/150078012-698eb423-1b02-4a76-8ad0-541a908d3862.jpg)
+１５，チャレパ側で設定のトップに戻り、<br>
+セキュリティと現在地情報→画面ロック に入ります。
 
-２１，画面に従って初期設定をします。
+パスワードが要求されるので、入力後「なし」を選択します。
 
-２３，アップデートの赤い進捗バーが１００％になると以下のような画面が出ます。dcha state を３にすることに成功しました。
+１６，ホーム画面に戻り、スタートボタンを押します。
 
-![](https://user-images.githubusercontent.com/46545607/150080601-4ed2327d-710e-4d9f-b710-cf26e6081063.jpg)
+![](https://user-images.githubusercontent.com/52069677/164911100-959604e3-d1c9-4250-9b95-94fbb2b0de62.png)
+
+１７，画面に従って初期設定を進めます。
+
+１８，アップデートの赤い進捗バーが１００％になると以下のような画面が出ます。dcha_state を３にすることに成功しました。
+
+![](https://user-images.githubusercontent.com/52069677/164909889-8afae15a-6e77-411c-8654-5fe9d614fb1d.png)
 
 ※ユーザー情報入力画面やエラーが出た場合は設定にミスがあります。戻って確認してください。
 
-２４，ホームから設定を開き、以下のように開発者向けオプションを開きます。
+１９，ホームから設定を開き、以下のように開発者向けオプションを開きます。
 
-設定→システム→タブレット情報→ビルド番号連打
+設定→システム→詳細設定→タブレット情報→詳細設定→ビルド番号を７回タップ
 
-システムに戻って
+1つ前の画面に戻り、開発者向けオプションを開く。
 
-開発者向けオプションを開く。
+※パスワードを要求された場合は失敗です。１６番に戻ってください。
 
-※パスワード要求された場合は失敗です。２０番に戻ってください。
+２０，USBデバッグをオンにします。
 
-２５，USBデバッグをオンにします。
+２１，PCで以下のアプリのapkファイルをダウンロードします。
 
-２６，PCで以下のアプリのapkファイルをダウンロードします。
-
-CPad Customize Tool
-
+CPad Customize Tool<br>
 [https://github.com/Kobold831/CPadCustomizeTool/releases](https://github.com/Kobold831/CPadCustomizeTool/releases)
 
-Nova Launcher
+Aurora Store for NEO<br>
+[https://github.com/Kobold831/AuroraStore4/releases](https://github.com/Kobold831/AuroraStore4/releases)
 
+Nova Launcher<br>
 [https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher)
 
-Aurora store for NEO
-
-https://ctabwiki.nerrog.net/?neo-aurora
-
-２７,ダウンロードしたapkのあるディレクトリで以下のコマンドを実行します。
-
+２２，ダウンロードしたapkのあるディレクトリで以下のコマンドを実行します。
+```
 adb install それぞれのapkのファイル名
 
-adb shell dpm set-device-owner com.aurora.store/.data.receiver.AdministratorReceiver
+adb shell pm grant com.saradabar.cpadcustomizetool android.permission.WRITE_SECURE_SETTINGS
 
+adb shell dpm set-device-owner com.saradabar.cpadcustomizetool/.Receiver.AdministratorReceiver
+
+adb shell dpm set-active-admin com.aurora.store/.data.receiver.AdministratorReceiver
+
+adb shell pm set-home-activity --user 0 com.teslacoilsw.launcher/.NovaLauncher
+```
 ※adbコマンドがない場合はインストールしてください。入れ方は各自調べてください。
 
-28,チャレンジパッドのホームボタンを押してNova launcherを選択します。
+２３，チャレンジパッドのホームボタンを押します。
 
-２９，ランチャーからカスタマイズツールを開きます。
+２４，Nova Launcherの初期設定をします。
 
-３０．システムUIを学習用に変更とナビゲーションバーの表示を維持とデバイス管理者を有効にするをオンにします。
+２５，ランチャーからカスタマイズツールを開きます。
 
-３１，これで改造完了です。
+２６．システムUIを通常用に変更とナビゲーションバーの表示を維持をオンにします。
+
+２７，これで改造完了です。
+
