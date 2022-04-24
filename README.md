@@ -130,7 +130,7 @@ Repace Allを選択
 ```
 設定後は保存をタップします。
 
-１３，Charlesで Connection from ～と表示されるので、｢Accept｣を押します。
+１３，Charlesで Connection from ～と表示されるので、｢allow｣を押します。
 ![](https://user-images.githubusercontent.com/52069677/164911402-8e4f994e-8871-4fea-9f5e-1b811dfd58ee.png)<br>
 ※ 10.0.0.8 の部分はチャレパ側のIPアドレスなので、環境により異なります。<br>
 また、これが出てこなかった場合は どこか手順を間違えているか、パソコンやルーターの設定でセパレータが動作している可能性があります。
