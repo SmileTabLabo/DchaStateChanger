@@ -87,25 +87,25 @@ Repace Allを選択
 
 設定後OKを押します。
 
-８，Help→SSL Proxying→Save Charles Root Certificateからファイルのタイプを｢Binary certificate (.cer)｣にしてから証明書ファイルを保存します。<br>
+７，Help→SSL Proxying→Save Charles Root Certificateからファイルのタイプを｢Binary certificate (.cer)｣にしてから証明書ファイルを保存します。<br>
 ![](https://user-images.githubusercontent.com/52069677/164907250-9a3b0ebc-d761-412d-b573-50b41dc855b8.png)<br>
 保存場所はわかりやすい場所にしてください。
 
-９，Help→Local IP Addressesを開きPCのIPアドレスをメモします。192.168.で始まるものが必要です。
+８，Help→Local IP Addressesを開きPCのIPアドレスをメモします。192.168.で始まるものが必要です。
 
 ![](https://user-images.githubusercontent.com/46545607/150076625-62e2fc3f-8d75-4fc3-8f99-d543ef76d892.png)
 
 この場合は192.168.11.9です。
 
-１０，チャレンジパッドとPCをUSB接続します。チャレンジパッドの通知領域に「Androidシステム・この端末を USB で充電中」と表示されているのでタップしてUSBの設定を開きます。
+９，チャレンジパッドとPCをUSB接続します。チャレンジパッドの通知領域に「Androidシステム・この端末を USB で充電中」と表示されているのでタップしてUSBの設定を開きます。
 ![](https://user-images.githubusercontent.com/52069677/164910761-156ca2b0-11e3-4f51-9832-1ea2128c834b.png)<br>
 
 「USB の使用」の項目で「ファイル転送」を選択してください。<br>
 ![](https://user-images.githubusercontent.com/52069677/164909609-7326b7d8-7b8d-4a6b-8ec8-0fa649316f3e.png)
 
-１１．PCのエクスプローラーにチャレンジパッドが表示されます。先程保存した証明書ファイルを「チャレンジパッド→内部共有ストレージ」にコピーしてください。
+１０．PCのエクスプローラーにチャレンジパッドが表示されます。先程保存した証明書ファイルを「チャレンジパッド→内部共有ストレージ」にコピーしてください。
 
-１２，チャレンジパッドの設定から次のように開きます。
+１１，チャレンジパッドの設定から次のように開きます。
 
 設定→ネットワークとインターネット→Wi-Fi→Wi-Fi 設定→詳細設定→証明書のインストール を開きます。
 
@@ -118,7 +118,7 @@ Repace Allを選択
 
 パスワード設定を要求されるので設定します。
 
-１３，証明書がインストール出来たら１つ前の画面に戻り、Wi-Fi の使用 を有効にします。
+１２，証明書がインストール出来たら１つ前の画面に戻り、Wi-Fi の使用 を有効にします。
 次に、接続するWi-FiのSSID名を選択して、詳細設定→プロキシ を「なし」から｢手動｣に設定します。
 設定項目は以下のとおりです。
 ```
@@ -130,39 +130,39 @@ Repace Allを選択
 ```
 設定後は保存をタップします。
 
-１４，Charlesで Connection from ～と表示されるので、｢Accept｣を押します。
+１３，Charlesで Connection from ～と表示されるので、｢Accept｣を押します。
 ![](https://user-images.githubusercontent.com/52069677/164911402-8e4f994e-8871-4fea-9f5e-1b811dfd58ee.png)<br>
 ※ 10.0.0.8 の部分はチャレパ側のIPアドレスなので、環境により異なります。<br>
 また、これが出てこなかった場合は どこか手順を間違えているか、パソコンやルーターの設定でセパレータが動作している可能性があります。
 
-１５，チャレパ側で設定のトップに戻り、<br>
+１４，チャレパ側で設定のトップに戻り、<br>
 セキュリティと現在地情報→画面ロック に入ります。
 
 パスワードが要求されるので、入力後「なし」を選択します。
 
-１６，ホーム画面に戻り、スタートボタンを押します。
+１５，ホーム画面に戻り、スタートボタンを押します。
 
 ![](https://user-images.githubusercontent.com/52069677/164911100-959604e3-d1c9-4250-9b95-94fbb2b0de62.png)
 
-１７，画面に従って初期設定を進めます。
+１６，画面に従って初期設定を進めます。
 
-１８，アップデートの赤い進捗バーが１００％になると以下のような画面が出ます。dcha_state を３にすることに成功しました。
+１７，アップデートの赤い進捗バーが１００％になると以下のような画面が出ます。dcha_state を３にすることに成功しました。
 
 ![](https://user-images.githubusercontent.com/52069677/164909889-8afae15a-6e77-411c-8654-5fe9d614fb1d.png)
 
 ※ユーザー情報入力画面やエラーが出た場合は設定にミスがあります。戻って確認してください。
 
-１９，ホームから設定を開き、以下のように開発者向けオプションを開きます。
+１８，ホームから設定を開き、以下のように開発者向けオプションを開きます。
 
 設定→システム→詳細設定→タブレット情報→詳細設定→ビルド番号を７回タップ
 
 1つ前の画面に戻り、開発者向けオプションを開く。
 
-※パスワードを要求された場合は失敗です。１６番に戻ってください。
+※パスワードを要求された場合は失敗です。１５番に戻ってください。
 
-２０，USBデバッグをオンにします。
+１９，USBデバッグをオンにします。
 
-２１，PCで以下のアプリのapkファイルをダウンロードします。
+２０，PCで以下のアプリのapkファイルをダウンロードします。
 
 CPad Customize Tool<br>
 [https://github.com/Kobold831/CPadCustomizeTool/releases](https://github.com/Kobold831/CPadCustomizeTool/releases)
@@ -173,7 +173,7 @@ Aurora Store for NEO<br>
 Nova Launcher<br>
 [https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher)
 
-２２，ダウンロードしたapkのあるディレクトリで以下のコマンドを実行します。
+２１，ダウンロードしたapkのあるディレクトリで以下のコマンドを実行します。
 ```
 adb install それぞれのapkのファイル名
 
@@ -187,13 +187,13 @@ adb shell pm set-home-activity --user 0 com.teslacoilsw.launcher/.NovaLauncher
 ```
 ※adbコマンドがない場合はインストールしてください。入れ方は各自調べてください。
 
-２３，チャレンジパッドのホームボタンを押します。
+２２，チャレンジパッドのホームボタンを押します。
 
-２４，Nova Launcherの初期設定をします。
+２３，Nova Launcherの初期設定をします。
 
-２５，ランチャーからカスタマイズツールを開きます。
+２４，ランチャーからカスタマイズツールを開きます。
 
-２６．システムUIを通常用に変更とナビゲーションバーの表示を維持をオンにします。
+２５．システムUIを通常用に変更とナビゲーションバーの表示を維持をオンにします。
 
-２７，これで改造完了です。
+２６，これで改造完了です。
 
