@@ -83,7 +83,7 @@ Replace
 
  Value: https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0/dcha_state_3_changer_1.0.apk
 ```
-Repace Allを選択
+Replace Allを選択
 
 設定後OKを押します。
 
@@ -185,7 +185,8 @@ adb shell dpm set-active-admin com.aurora.store/.data.receiver.AdministratorRece
 
 adb shell pm set-home-activity --user 0 com.teslacoilsw.launcher/.NovaLauncher
 ```
-※adbコマンドがない場合はインストールしてください。入れ方は各自調べてください。
+※adbコマンドがない場合はインストールしてください。入れ方は各自調べてください。<br>
+また、**カスタマイズツール**及び**ストアアプリ**の***動作は保証致しません***。
 
 ２２，チャレンジパッドのホームボタンを押します。
 
