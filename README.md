@@ -130,6 +130,7 @@ Replace Allを選択
 ```
 設定後は保存をタップします。
 
+
 １３，Charlesで Connection from ～と表示されるので、｢Allow｣を押します。
 ![](https://user-images.githubusercontent.com/52069677/164911402-8e4f994e-8871-4fea-9f5e-1b811dfd58ee.png)<br>
 ※ 10.0.0.8 の部分はチャレパ側のIPアドレスなので、環境により異なります。<br>
