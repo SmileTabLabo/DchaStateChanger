@@ -88,7 +88,7 @@ https://townak.benesse.ne.jp/rel/A/sp_84/open/TouchSetupLogin.apk
 
 Replace -  Value:
 ```
-https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0/dcha_state_3_changer_1.0.apk
+https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0.1/app-release.apk
 ```
 
 `Replace all`を選択
