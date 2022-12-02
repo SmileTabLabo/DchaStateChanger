@@ -6,7 +6,7 @@
 
 ## 必要なもの
 
-*   チャレンジパッドNeo/Next
+*   チャレンジパッド Neo/Next
 *   Windows, Linux, Mac OS搭載のPC
 *   USB 2.0 Mini-B ケーブル
 
@@ -22,7 +22,7 @@ Charlesを以下のURLからインストールします｡
 
 ## インストール
 
-１，まずPCでCharlesを開きます｡
+１，まずPCで **Charles** を開きます｡
 
 ![](https://user-images.githubusercontent.com/46545607/150069973-a1caa0d8-ec52-4cd9-8139-6860caa39fdb.png)
 
@@ -39,6 +39,7 @@ Charlesを以下のURLからインストールします｡
 ![](https://user-images.githubusercontent.com/52069677/164899196-0ddab9ba-6dae-489a-ba90-b8b108ad7a29.png)
 
 `Enable SSL Proxying`にチェックを入れます
+
 ![](https://user-images.githubusercontent.com/46545607/150072166-354e90b7-f560-4913-8af9-a7db4876e859.png)
 
 設定後､ `OK`を押します｡
@@ -75,7 +76,7 @@ Query: (空欄)
 
 ６，５の画像下部の`Add`を押します｡
 
-![](https://user-images.githubusercontent.com/46545607/150074064-2ff7cf34-d2a6-4466-9ec8-ca3a68d2ef0a.png)
+![](https://user-images.githubusercontent.com/52069677/205293357-9fe6e4df-daa1-4062-9905-c54dddb51cbe.png)
 
 設定値は次の通りです｡
 
@@ -102,7 +103,7 @@ https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0.1/app-re
 ８，`Help`→`Local IP Addresses`を開き､ PCのIPアドレスをメモします｡  
 `192.168.`で始まるものが必要です｡
 
-![](https://user-images.githubusercontent.com/46545607/150076625-62e2fc3f-8d75-4fc3-8f99-d543ef76d892.png)
+![](https://user-images.githubusercontent.com/52069677/205293725-fa181ca2-f946-4220-bbe9-2a41b1b81f0a.png)
 
 この場合は`192.168.11.9`です｡
 
@@ -124,13 +125,13 @@ https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0.1/app-re
 
 先程コピーした証明書ファイルがあるので選択します｡
 
-｢証明書の名前を指定する｣と言ったダイアログが開くので､ 名前を適当に付けて`OK`を押します｡  
-｢VPNとアプリ｣のまま変更しないでください｡
+`証明書の名前を指定する`と言ったダイアログが開くので､ 適当に名前を付けて`OK`を押します｡  
+｢`VPNとアプリ`｣のまま変更しないでください｡
 
 パスワード設定を要求されるので設定します｡
 
-１２，証明書がインストール出来たら１つ前の画面に戻り､ Wi-Fi の使用 を有効にします｡ 
-次に､ 接続するWi-FiのSSID名を選択して､ 詳細設定→プロキシ を｢なし｣から｢手動｣に設定します｡ 
+１２，証明書がインストール出来たら１つ前の画面に戻り､ `Wi-Fi の使用` を有効にします｡ 
+次に､ 接続するWi-FiのSSID名を選択して､ `詳細設定`→`プロキシ` を｢`なし`｣から｢`手動`｣に設定します｡ 
 設定項目は以下の通りです｡  
 
 プロキシのホスト名: 先程調べたPCのIPアドレス
@@ -143,13 +144,14 @@ https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0.1/app-re
 
 １３，Charlesで `Connection from ～`と表示されるので､ ｢Allow｣を押します｡
 ![](https://user-images.githubusercontent.com/52069677/164911402-8e4f994e-8871-4fea-9f5e-1b811dfd58ee.png)  
-※ 10.0.0.8 の部分はチャレパ側のIPアドレスなので､ 環境により異なります｡  
-また､ これが出てこなかった場合は どこか手順を間違えているか､ パソコンやルーターの設定で**セパレータ**が動作している可能性があります｡
+※ `10.0.0.8` の部分はチャレパ側のIPアドレスなので､ 環境により異なります｡  
+また､ これが出てこなかった場合は どこか手順を間違えているか､ パソコンやルーターの設定で**セパレータ**が動作している可能性があります｡  
+詳しくは[こちら](Separator.md)をご覧下さい｡
 
 １４，チャレパ側で設定のトップに戻り､  
 `セキュリティと現在地情報`→`画面ロック`に入ります｡
 
-パスワードが要求されるので､ 入力後｢なし｣を選択します｡
+パスワードが要求されるので､ 入力後｢`なし`｣を選択します｡
 
 １５，ホーム画面に戻り､ スタートボタンを押します｡
 
@@ -157,13 +159,16 @@ https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0.1/app-re
 
 １６，画面に従って初期設定を進めます｡
 
+※バッテリー残量が50%未満だと続行できません｡
+
 １７，アップデートの赤い進捗バーが１００％になると以下のような画面が出ます｡  
 
-![](https://user-images.githubusercontent.com/52069677/164909889-8afae15a-6e77-411c-8654-5fe9d614fb1d.png)
+![](https://user-images.githubusercontent.com/52069677/205294809-2761d67d-d6b3-44bb-a60b-df02bedc9cc0.png)
+
 **DchaState** を３にすることに成功しています｡  
 ※ユーザー情報入力画面やエラーが出た場合は設定にミスがあります｡ 戻って確認してください｡
 
-１８，ホームから設定アプリを開き､ 以下の通りに開発者向けオプションを開きます.
+１８，ホームから設定アプリを開き､ 以下の通りに開発者向けオプションを開きます｡
 
 `システム`→`詳細設定`→`タブレット情報`→`詳細設定`→`ビルド番号`を７回タップ
 
