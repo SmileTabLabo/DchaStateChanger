@@ -159,6 +159,8 @@ https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0.1/app-re
 
 １６，画面に従って初期設定を進めます｡
 
+※バッテリー残量が50%未満だと続行できません｡
+
 １７，アップデートの赤い進捗バーが１００％になると以下のような画面が出ます｡  
 
 ![](https://user-images.githubusercontent.com/52069677/205294809-2761d67d-d6b3-44bb-a60b-df02bedc9cc0.png)
