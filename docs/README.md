@@ -4,10 +4,14 @@
 
 このツールの使用によって起きた損害については保証しません｡
 
+また､ `Cpad_dcha_3_changer`は､ **一時的に**開発者向けオプションのロックを回避するためのアプリです｡  
+簡易セットアップ後も開発者向けオプションを利用する場合は､ [**BypassDchaLock**](https://github.com/s1204IT/BypassDchaLock) を使って下さい｡
+
 ## 必要なもの
 
 *   チャレンジパッド Neo/Next
 *   Windows, Linux, Mac OS搭載のPC
+*   ADB環境
 *   USB 2.0 Mini-B ケーブル
 
 ## 準備
@@ -76,7 +80,7 @@ Query: (空欄)
 
 ６，５の画像下部の`Add`を押します｡
 
-![](https://user-images.githubusercontent.com/52069677/205293357-9fe6e4df-daa1-4062-9905-c54dddb51cbe.png)
+![](https://user-images.githubusercontent.com/52069677/209759334-c6b0e806-a21c-4038-b314-9e3b494f9a68.png)
 
 設定値は次の通りです｡
 
@@ -89,7 +93,7 @@ https://townak.benesse.ne.jp/rel/A/sp_84/open/TouchSetupLogin.apk
 
 Replace -  Value:
 ```
-https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0.1/app-release.apk
+https://github.com/mouseos/Cpad_dcha_3_changer/releases/latest/download/app-release.apk
 ```
 
 `Replace all`を選択
@@ -178,39 +182,26 @@ https://github.com/mouseos/Cpad_dcha_3_changer/releases/download/Ver1.0.1/app-re
 
 １９，`USBデバッグ`をオンにします｡
 
-２０，PCで以下のアプリのAPKファイルをダウンロードします｡
+２０，PCで以下のADBコマンドを実行します｡
+```
+adb shell pm uninstall --user 0 jp.co.benesse.dcha.dchaservice
+```
 
-CPad Customize Tool  
-[https://github.com/Kobold831/CPadCustomizeTool/releases](https://github.com/Kobold831/CPadCustomizeTool/releases)
-
-Aurora Store for NEO  
-[https://github.com/Kobold831/AuroraStore4/releases](https://github.com/Kobold831/AuroraStore4/releases)
+２１，PCで以下のアプリのAPKファイルをダウンロードします｡
 
 Nova Launcher  
 [https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher)
 
-２１，ダウンロードしたapkのあるディレクトリで以下のコマンドを実行します｡
+２２，ダウンロードしたAPKのあるディレクトリで以下のコマンドを実行します｡
 ```
-adb install [それぞれのapkのファイル名]
-```
-```
-adb shell pm grant com.saradabar.cpadcustomizetool android.permission.WRITE_SECURE_SETTINGS
-```
-```
-adb shell dpm set-device-owner com.saradabar.cpadcustomizetool/.Receiver.AdministratorReceiver
+adb install .\NovaLauncher_[version].apk
 ```
 ```
 adb shell pm set-home-activity --user 0 com.teslacoilsw.launcher/.NovaLauncher
 ```
-※ADBコマンドがない場合はインストールしてください｡ 入れ方は各自調べてください｡  
-また､ **カスタマイズツール**及び**Aurora Store for NEO**の**動作は保証致しません**｡
 
-２２，チャレンジパッドのホームボタンを押します｡
+２３，チャレンジパッドのホームボタンを押します｡
 
-２３，Nova Launcherの初期設定をします｡
+２４，Nova Launcherの初期設定をします｡
 
-２４，カスタマイズツールを開きます｡
-
-２５，システムUIを通常用に変更とナビゲーションバーの表示を維持をオンにします｡
-
-２６，これで改造完了です｡
+２５，これで改造完了です｡

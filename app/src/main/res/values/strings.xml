@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">DchaState 3 Changer</string>
-    <string name="message">DchaStateを 3 に変更しました｡\nナビゲーションバーを表示しました｡</string>
+    <string name="message">DchaStateを 3 に変更しました｡\nナビゲーションバーを有効にしました｡</string>
+    <string name="ignore">DchaStateが３になった形跡が無いため､\nこのアプリを実行する必要はありません｡</string>
 
 </resources>
