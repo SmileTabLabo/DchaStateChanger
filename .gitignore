@@ -1,0 +1,8 @@
+# Gradle
+/.gradle/
+# Android SDK
+/local.properties
+# IntelliJ
+/.idea/
+# Gradle Build
+/app/build/

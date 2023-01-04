@@ -1,14 +1,16 @@
 apply plugin: 'com.android.application'
+
 android {
-    compileSdkVersion 22
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 28
     defaultConfig {
         applicationId "jp.co.benesse.touch.setuplogin"
         minSdkVersion 22
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 22
         versionCode 3
         versionName "1.1.0"
     }
+
     buildTypes {
         debug {
             minifyEnabled true
@@ -17,4 +19,6 @@ android {
             minifyEnabled true
         }
     }
+
+    buildToolsVersion "30.0.2"
 }

@@ -1,14 +1,19 @@
 buildscript {
     repositories {
+        //noinspection JcenterRepositoryObsolete
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.+'
+        //noinspection AndroidGradlePluginVersion
+        classpath 'com.android.tools.build:gradle:4.2.2'
     }
 }
 
 allprojects {
     repositories {
+        //noinspection JcenterRepositoryObsolete
         jcenter()
+        google()
     }
 }
