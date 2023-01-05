@@ -1,12 +1,16 @@
-apply plugin: 'com.android.application'
+plugins {
+    id  'com.android.application'
+}
 
 android {
-    compileSdkVersion 28
+    namespace 'jp.co.benesse.touch.setuplogin'
+    compileSdk 28
+
     defaultConfig {
         applicationId "jp.co.benesse.touch.setuplogin"
-        minSdkVersion 22
+        minSdk 22
         //noinspection ExpiredTargetSdkVersion
-        targetSdkVersion 22
+        targetSdk 22
         versionCode 3
         versionName "1.1.0"
     }
@@ -19,6 +23,4 @@ android {
             minifyEnabled true
         }
     }
-
-    buildToolsVersion "30.0.2"
 }
