@@ -9,11 +9,6 @@ on:
       - '*.gradle'
   workflow_dispatch:
     inputs:
-      tag:
-        description: 'Tag'
-        type: string
-        required: true
-        default: 'Ver'
       release:
         description: 'Upload to Release'
         type: boolean
@@ -35,22 +30,23 @@ jobs:
             ~/.gradle/wrapper/dists
           key: ${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
       - name: Build with Gradle
-        run: ./gradlew assemble
+        run: | 
+          ./gradlew assemble
+          echo "app_ver=$(grep versionName ./app/build.gradle | awk '{print $2}' | tr -d \")" >> $GITHUB_ENV
       - name: Sign APK
         run: |
           sudo apt-get install apksigner -y
           apksigner sign --cert ./certs/testkey.x509.pem --key ./certs/testkey.pk8 --in ./app/build/outputs/apk/release/app-release-unsigned.apk --out ./app/build/outputs/apk/release/app-release.apk
-      - name: Upload build artifact
+      - name: Upload built APKs
         uses: actions/upload-artifact@v3
         with:
-          name: Cpad_dcha_3_changer-Built
+          name: Cpad_dcha_3_changer_Ver${{ env.app_ver }}-Built
           path: app/build/outputs/apk/**/*.apk
-          if-no-files-found: ignore
       - name: Release
         uses: softprops/action-gh-release@v1
         if: ${{ github.event.inputs.release == 'true' }}
         with:
-          tag_name: ${{ github.event.inputs.tag }}
+          tag_name: Ver${{ env.app_ver }}
           draft: true
           prerelease: false
           files: app/build/outputs/apk/release/app-release.apk
