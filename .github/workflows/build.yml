@@ -20,8 +20,10 @@ jobs:
     name: Build
     runs-on: ubuntu-20.04
     steps:
+
       - name: Check out
         uses: actions/checkout@v3
+
       - name: Cache
         uses: actions/cache@v3
         with:
@@ -29,24 +31,31 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper/dists
           key: ${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+
       - name: Build with Gradle
         run: | 
           ./gradlew assemble
-          echo "app_ver=$(grep versionName ./app/build.gradle | awk '{print $2}' | tr -d \")" >> $GITHUB_ENV
+          echo "version=$(grep versionName ./app/build.gradle | awk '{print $2}' | tr -d \")" >> $GITHUB_ENV
+          echo "commit=$(echo ${{ github.sha }} | cut -c 1-7)" >> $GITHUB_ENV
+
       - name: Sign APK
         run: |
-          sudo apt-get install apksigner -y
-          apksigner sign --cert ./certs/testkey.x509.pem --key ./certs/testkey.pk8 --in ./app/build/outputs/apk/release/app-release-unsigned.apk --out ./app/build/outputs/apk/release/app-release.apk
+          mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/app-debug-unsigned.apk
+          java -jar sign/signapk.jar sign/testkey.x509.pem sign/testkey.pk8 app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/app-release.apk
+          java -jar sign/signapk.jar sign/testkey.x509.pem sign/testkey.pk8 app/build/outputs/apk/debug/app-debug-unsigned.apk app/build/outputs/apk/debug/app-debug.apk
+          find app/build/outputs/apk/ -type f -name "*-unsigned.apk" -exec rm -f {} \;
+
       - name: Upload built APKs
         uses: actions/upload-artifact@v3
         with:
-          name: Cpad_dcha_3_changer_Ver${{ env.app_ver }}-Built
+          name: Cpad_dcha_3_changer(Ver${{ env.version }}@${{ env.commit }})
           path: app/build/outputs/apk/**/*.apk
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: ${{ github.event.inputs.release == 'true' }}
         with:
-          tag_name: Ver${{ env.app_ver }}
+          tag_name: Ver${{ env.version }}
           draft: true
           prerelease: false
           files: app/build/outputs/apk/release/app-release.apk

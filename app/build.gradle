@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "jp.co.benesse.touch.setuplogin"
-        minSdk 22
+        minSdk 28
         //noinspection ExpiredTargetSdkVersion
         targetSdk 22
         versionCode 3
