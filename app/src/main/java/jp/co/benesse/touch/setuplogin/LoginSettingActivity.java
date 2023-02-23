@@ -11,17 +11,14 @@ public class LoginSettingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // DchaStateが３に成った形跡が無い場合
-        if (!new File("/factory/count_dcha_completed").exists()) {
-            // 文字表示
-            setContentView(R.layout.ignore);
-        } else {
-            // 文字表示
-            setContentView(R.layout.main);
-            // DchaStateを 3 に変更
+        // DchaStateが３に成った形跡が有る場合
+        if (new File("/factory/count_dcha_completed").exists()) {
+            // DchaStateを３に変更
             putInt(getContentResolver(), "dcha_state", 3);
-            // ナビゲーションバーを表示
-            putInt(getContentResolver(), "hide_navigation_bar", 0);
         }
+        // ナビゲーションバーを表示
+        putInt(getContentResolver(), "hide_navigation_bar", 0);
+        // 文字表示
+        setContentView(R.layout.generic);
     }
 }

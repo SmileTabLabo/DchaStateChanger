@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">DchaState 3 Changer</string>
-    <string name="message">DchaStateを 3 に変更しました｡\nナビゲーションバーを有効にしました｡</string>
-    <string name="ignore">DchaStateが３になった形跡が無いため､\nこのアプリを実行する必要はありません｡</string>
+    <string name="message">ホームボタンを押し､ 設定アプリから開発者向けオプションを有効にして下さい｡</string>
 
 </resources>
