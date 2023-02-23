@@ -58,4 +58,6 @@ jobs:
           tag_name: Ver${{ env.version }}
           draft: true
           prerelease: false
-          files: app/build/outputs/apk/release/app-release.apk
+          files: |
+            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/release/app-release.apk
