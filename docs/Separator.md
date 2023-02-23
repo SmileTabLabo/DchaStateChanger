@@ -7,7 +7,7 @@
 ※ Charles がデフォルトパスにインストールされている事を前提とします｡
 
 次のページを開きます｡  
-<https://subcontent.s1204.me/Charles.bat>
+<https://raw.githubusercontent.com/mouseos/Cpad_dcha_3_changer/main/docs/Charles.bat>
 
 右クリックして｢**名前を付けて保存...**｣を押します｡
 
