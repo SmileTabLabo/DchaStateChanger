@@ -2,6 +2,8 @@ package jp.co.benesse.touch.setuplogin;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.File;
 
@@ -19,6 +21,11 @@ public class LoginSettingActivity extends Activity {
         // ナビゲーションバーを表示
         putInt(getContentResolver(), "hide_navigation_bar", 0);
         // 文字表示
-        setContentView(R.layout.generic);
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setGravity(17);
+        TextView textView = new TextView(this);
+        textView.setText("ホームボタンを押して､ 設定アプリから開発者向けオプションを有効にして下さい｡");
+        linearLayout.addView(textView, new LinearLayout.LayoutParams(-2, -2));
+        setContentView(linearLayout);
     }
 }
