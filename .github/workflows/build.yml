@@ -6,8 +6,6 @@ on:
       - 'app/**'
       - 'gradle/wrapper/gradle-wrapper.properties'
       - '*.gradle'
-    tags-ignore:
-    - '*'
   workflow_dispatch:
     inputs:
       release:
