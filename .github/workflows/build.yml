@@ -33,24 +33,22 @@ jobs:
 
       - name: Build with Gradle
         run: | 
-          ./gradlew assemble
+          ./gradlew assembleRelease
           echo "version=$(grep versionName ./app/build.gradle | awk '{print $2}' | tr -d \")" >> $GITHUB_ENV
           echo "commit=$(echo ${{ github.sha }} | cut -c 1-7)" >> $GITHUB_ENV
 
       - name: Sign APK
         run: |
           sudo apt-get install -y zipalign
-          mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/app-debug-unsigned.apk
-          find app/build/outputs/apk/ -type f -name "app-*-unsigned.apk" -exec zip {} -d "META-INF/com/android/build/gradle/app-metadata.properties" \;
-          find app/build/outputs/apk/ -type f -name "app-*-unsigned.apk" | while read line; do zipalign 4 $line ${line}.u; done
-          find app/build/outputs/apk/ -type f -name "app-*-unsigned.apk.u" | while read line; do java -jar sign/signapk.jar sign/testkey.x509.pem sign/testkey.pk8 $line $(echo $line | sed -e 's/-unsigned//g' -e 's/\.u//g'); done
-          find app/build/outputs/apk/ -type f -name "app-*-unsigned.apk" -exec rm -f {} \;
+          zip app/build/outputs/apk/release/app-release-unsigned.apk -d "META-INF/com/android/build/gradle/app-metadata.properties"
+          zipalign 4 app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/app-release-unaligned.apk
+          java -jar sign/signapk.jar sign/testkey.x509.pem sign/testkey.pk8 app/build/outputs/apk/release/app-release-unaligned.apk app/build/outputs/apk/release/app-release.apk
 
       - name: Upload built APKs
         uses: actions/upload-artifact@v3
         with:
           name: Cpad_dcha_3_changer(Ver${{ env.version }}@${{ env.commit }})
-          path: app/build/outputs/apk/**/*.apk
+          path: app/build/outputs/apk/release/app-release.apk
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -59,6 +57,4 @@ jobs:
           tag_name: Ver${{ env.version }}
           draft: true
           prerelease: false
-          files: |
-            app/build/outputs/apk/debug/app-debug.apk
-            app/build/outputs/apk/release/app-release.apk
+          files: app/build/outputs/apk/release/app-release.apk
