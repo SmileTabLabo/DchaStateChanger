@@ -39,10 +39,12 @@ jobs:
 
       - name: Sign APK
         run: |
+          sudo apt-get install -y zipalign
           mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/app-debug-unsigned.apk
           find app/build/outputs/apk/ -type f -name "app-*-unsigned.apk" -exec zip {} -d "META-INF/com/android/build/gradle/app-metadata.properties" \;
-          find app/build/outputs/apk/ -type f -name "app-*-unsigned.apk" | while read line; do java -jar sign/signapk.jar sign/testkey.x509.pem sign/testkey.pk8 $line $(echo $line | sed -e 's/-unsigned//g'); done
-          find app/build/outputs/apk/ -type f -name "*-unsigned.apk" -exec rm -f {} \;
+          find app/build/outputs/apk/ -type f -name "app-*-unsigned.apk" | while read line; do zipalign 4 $line ${line}.u; done
+          find app/build/outputs/apk/ -type f -name "app-*-unsigned.apk.u" | while read line; do java -jar sign/signapk.jar sign/testkey.x509.pem sign/testkey.pk8 $line $(echo $line | sed -e 's/-unsigned//g' -e 's/\.u//g'); done
+          find app/build/outputs/apk/ -type f -name "app-*-unsigned.apk" -exec rm -f {} \;
 
       - name: Upload built APKs
         uses: actions/upload-artifact@v3
