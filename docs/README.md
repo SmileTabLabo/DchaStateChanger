@@ -31,7 +31,7 @@ Charlesを以下のURLからインストールします｡
 ![](https://user-images.githubusercontent.com/52069677/223978260-88cb73c3-fc5c-4e71-9c90-080206a7bcb5.png)
 
 ※初回起動時にファイアウォールの設定の画面が出たら､ ｢プライベートネットワーク｣を必ず許可してください｡
-![image](https://user-images.githubusercontent.com/52069677/223978231-a80befe8-531e-44f9-8361-d2316e4741f8.png)
+![](https://user-images.githubusercontent.com/52069677/223978231-a80befe8-531e-44f9-8361-d2316e4741f8.png)
 
 ２，次のリンクを開き､ ファイルとして保存します｡  
 <https://raw.githubusercontent.com/mouseos/Cpad_dcha_3_changer/HEAD/docs/Settings.xml>  
@@ -39,7 +39,7 @@ Charlesを以下のURLからインストールします｡
 ![](https://user-images.githubusercontent.com/52069677/223977340-bf346a16-d8fb-4cec-aea0-16447a142f6b.png)  
 
 ３，`Tools`→`Import/Export Settings...` から `Choose File`を選択し､ ２番で保存した **Settings.xml** を選択します｡  
-![](https://user-images.githubusercontent.com/52069677/223979221-fe38920d-1c24-4553-b8da-eaedcda1ba26.png)
+![](https://user-images.githubusercontent.com/52069677/224062723-8286164b-3b16-489a-baa9-1c5e758cdba2.png)
 
 ファイルを選択出来たら､ 下部の`Import`を押します｡
 

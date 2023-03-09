@@ -2,18 +2,13 @@
 <?charles serialisation-version='2.0' ?>
 <charles-export>
   <proxyConfiguration>
-    <enableSOCKSProxy>false</enableSOCKSProxy>
-    <dynamicHTTPPort>false</dynamicHTTPPort>
-    <dynamicSOCKSPort>false</dynamicSOCKSPort>
     <enableSOCKSTransparentHTTPProxying>true</enableSOCKSTransparentHTTPProxying>
     <port>8888</port>
-    <SOCKSPort>8889</SOCKSPort>
     <decryptSSL>true</decryptSSL>
-    <transparentProxy>false</transparentProxy>
     <supportsH2>true</supportsH2>
     <preferIPv6addresses>false</preferIPv6addresses>
     <bypassDomains>
-      <string>*.*</string>
+      <string>*</string>
     </bypassDomains>
     <sslLocations>
       <locationPatterns>
@@ -25,27 +20,7 @@
         </locationMatch>
       </locationPatterns>
     </sslLocations>
-    <sslExcludeLocations>
-      <locationPatterns/>
-    </sslExcludeLocations>
     <defaultSOCKSTransparentHTTPProxyPorts>true</defaultSOCKSTransparentHTTPProxyPorts>
-    <socksTransparentHTTPProxyPorts/>
-    <socksTransparentHTTPProxyPortRanges/>
-    <windowsConfiguration>
-      <useHTTP>true</useHTTP>
-      <useSOCKS>false</useSOCKS>
-      <enableAtStartup>true</enableAtStartup>
-    </windowsConfiguration>
-    <macOSXConfiguration>
-      <useHTTP>true</useHTTP>
-      <useSOCKS>false</useSOCKS>
-      <enableAtStartup>true</enableAtStartup>
-    </macOSXConfiguration>
-    <mozillaFirefoxConfiguration>
-      <useHTTP>true</useHTTP>
-      <useSOCKS>false</useSOCKS>
-      <enableAtStartup>true</enableAtStartup>
-    </mozillaFirefoxConfiguration>
   </proxyConfiguration>
   <toolConfiguration>
     <configs>
@@ -53,7 +28,6 @@
         <string>Rewrite</string>
         <rewrite>
           <toolEnabled>true</toolEnabled>
-          <debugging>false</debugging>
           <sets>
             <rewriteSet>
               <active>true</active>
@@ -125,13 +99,6 @@
             </rewriteSet>
           </sets>
         </rewrite>
-      </entry>
-      <entry>
-        <string>Port Forwarding</string>
-        <portForwarding>
-          <active>false</active>
-          <portForwardings/>
-        </portForwarding>
       </entry>
     </configs>
   </toolConfiguration>
