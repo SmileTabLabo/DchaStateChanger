@@ -1,4 +1,4 @@
-[# Cpad\_dcha\_3\_changer
+# Cpad\_dcha\_3\_changer
 
 ## 警告
 
