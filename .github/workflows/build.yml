@@ -37,13 +37,6 @@ jobs:
           echo "version=$(grep versionName ./app/build.gradle | awk '{print $2}' | tr -d \")" >> $GITHUB_ENV
           echo "commit=$(echo ${{ github.sha }} | cut -c 1-7)" >> $GITHUB_ENV
 
-      - name: Sign APK
-        run: |
-          sudo apt-get install -y zipalign
-          zip app/build/outputs/apk/release/app-release-unsigned.apk -d "META-INF/com/android/build/gradle/app-metadata.properties"
-          zipalign 4 app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/app-release-aligned.apk
-          java -jar sign/signapk.jar sign/testkey.x509.pem sign/testkey.pk8 app/build/outputs/apk/release/app-release-aligned.apk app/build/outputs/apk/release/app-release.apk
-
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:

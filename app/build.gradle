@@ -13,8 +13,19 @@ android {
         versionCode 5
         versionName "1.2.0"
     }
+
+    signingConfigs {
+        android {
+            storeFile file('android.jks')
+            storePassword 'android'
+            keyAlias 'android'
+            keyPassword 'android'
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.android
             minifyEnabled true
         }
     }
