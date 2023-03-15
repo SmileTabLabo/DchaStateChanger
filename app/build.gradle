@@ -10,11 +10,22 @@ android {
         minSdk 28
         //noinspection ExpiredTargetSdkVersion
         targetSdk 22
-        versionCode 5
-        versionName "1.2.0"
+        versionCode 6
+        versionName "1.2.1"
     }
+
+    signingConfigs {
+        android {
+            storeFile file('android.jks')
+            storePassword 'android'
+            keyAlias 'android'
+            keyPassword 'android'
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.android
             minifyEnabled true
         }
     }
