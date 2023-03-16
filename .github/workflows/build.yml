@@ -43,6 +43,14 @@ jobs:
           name: Cpad_dcha_3_changer(Ver${{ env.version }}@${{ env.commit }})
           path: app/build/outputs/apk/release/app-release.apk
 
+      - name: Re-signing APK
+        run: |
+          sudo apt-get install -y zipalign
+          zip app/build/outputs/apk/release/app-release.apk -d "META-INF/com/android/build/gradle/app-metadata.properties"
+          mv app/build/outputs/apk/release/app-release.apk app/build/outputs/apk/release/app-release-unsigned.apk
+          java -jar sign/signapk.jar sign/testkey.x509.pem sign/testkey.pk8 app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/app-release-unaligned.apk
+          zipalign 4 app/build/outputs/apk/release/app-release-unaligned.apk app/build/outputs/apk/release/app-release.apk
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: ${{ github.event.inputs.release == 'true' }}
