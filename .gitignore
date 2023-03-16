@@ -6,3 +6,6 @@
 /.idea/
 # Gradle Build
 /app/build/
+# Android Studio Signing APK
+/app/debug/
+/app/release/
