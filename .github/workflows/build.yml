@@ -44,6 +44,7 @@ jobs:
           path: app/build/outputs/apk/release/app-release.apk
 
       - name: Re-signing APK
+        if: github.event.inputs.release == 'true'
         run: |
           sudo apt-get install -y zipalign
           zip app/build/outputs/apk/release/app-release.apk -d "META-INF/com/android/build/gradle/app-metadata.properties"
@@ -53,7 +54,7 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: ${{ github.event.inputs.release == 'true' }}
+        if: github.event.inputs.release == 'true'
         with:
           tag_name: Ver${{ env.version }}
           draft: true
