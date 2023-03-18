@@ -128,6 +128,9 @@ Charlesを以下のURLからインストールします｡
 ```
 adb shell pm uninstall --user 0 jp.co.benesse.dcha.dchaservice
 ```
+```
+adb shell settings put system dcha_state 0
+```
 
 １７，PCで **Nova Launcher** のAPKファイルをダウンロードします｡
 
@@ -143,10 +146,7 @@ adb shell pm set-home-activity --user 0 com.teslacoilsw.launcher/.NovaLauncher
 ```
 
 １９，チャレンジパッドのホームボタンを押します｡
-２０，dcha stateを戻します。
-```
-adb shell settings put system dcha_state 0
-```
-２１，Nova Launcherの初期設定をします｡
+
+２０，Nova Launcherの初期設定をします｡
 
 これで改造完了です｡
