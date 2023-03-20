@@ -9,10 +9,12 @@
 
 ## 必要なもの
 
-*   チャレンジパッド Neo/Next
-*   Windows, Linux, Mac OS搭載のPC
-*   ADB環境
-*   USB 2.0 Mini-B ケーブル
+- チャレンジパッド Neo/Next
+  - チャレンジパッド３は対象外です。
+    https://wiki3.jp/SmileTabLabo/page/21#count_dcha_completed
+- Windows, Linux, Mac OS搭載のPC
+- ADB環境
+- USB 2.0 Mini-B ケーブル
 
 ## 準備
 
