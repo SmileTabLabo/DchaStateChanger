@@ -3,13 +3,14 @@ name: Build
 on:
   push:
     paths:
+      - '.github/workflows/build.yml'
       - 'app/**'
       - 'gradle/wrapper/gradle-wrapper.properties'
       - '*.gradle'
   workflow_dispatch:
     inputs:
       release:
-        description: 'Upload to Release'
+        description: 'Release'
         type: boolean
         required: true
         default: false
@@ -20,16 +21,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
 
-      - name: Check out
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Cache
-        uses: actions/cache@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper/dists
-          key: ${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'gradle'
 
       - name: Build with Gradle
         run: | 
