@@ -33,7 +33,7 @@ jobs:
 
       - name: Build with Gradle
         run: | 
-          ./gradlew assembleRelease
+          ./gradlew assembleRelease -q
           echo "version=$(grep versionName ./app/build.gradle | awk '{print $2}' | tr -d \")" >> $GITHUB_ENV
           echo "commit=$(echo ${{ github.sha }} | cut -c 1-7)" >> $GITHUB_ENV
 
@@ -42,15 +42,6 @@ jobs:
         with:
           name: Cpad_dcha_3_changer(Ver${{ env.version }}@${{ env.commit }})
           path: app/build/outputs/apk/release/app-release.apk
-
-      - name: Re-signing APK
-        if: github.event.inputs.release == 'true'
-        run: |
-          sudo apt-get install -y zipalign
-          zip app/build/outputs/apk/release/app-release.apk -d "META-INF/com/android/build/gradle/app-metadata.properties"
-          mv app/build/outputs/apk/release/app-release.apk app/build/outputs/apk/release/app-release-unsigned.apk
-          java -jar sign/signapk.jar sign/testkey.x509.pem sign/testkey.pk8 app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/app-release-unaligned.apk
-          zipalign 4 app/build/outputs/apk/release/app-release-unaligned.apk app/build/outputs/apk/release/app-release.apk
 
       - name: Release
         uses: softprops/action-gh-release@v1
