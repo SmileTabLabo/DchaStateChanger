@@ -19,6 +19,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".DevelopmentSettingsActivity"
+            android:exported="true"
+            android:label="開発者向けオプション">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <receiver
             android:name=".DeviceAdminReceiver"
             android:exported="false"

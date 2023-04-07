@@ -5,7 +5,7 @@ on:
     paths:
       - '.github/workflows/build.yml'
       - 'app/**'
-      - 'gradle/wrapper/gradle-wrapper.properties'
+      - 'gradle/**'
       - '*.gradle'
   workflow_dispatch:
     inputs:
