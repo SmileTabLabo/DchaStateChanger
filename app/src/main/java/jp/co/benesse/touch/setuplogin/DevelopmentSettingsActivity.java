@@ -28,7 +28,7 @@ public class DevelopmentSettingsActivity extends Activity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            putInt(DevelopmentSettingsActivity.this.getContentResolver(), "dcha_state", 0);
+                            putInt(getContentResolver(), "dcha_state", 0);
                         }
                     }, 1000);
                 }
