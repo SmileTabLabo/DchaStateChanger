@@ -6,7 +6,7 @@
 
     <application
         android:icon="@android:mipmap/sym_def_app_icon"
-        android:label="DchaState 3 Changer"
+        android:label="DchaState Changer"
         android:theme="@android:style/Theme.DeviceDefault">
 
         <activity
@@ -20,26 +20,13 @@
         </activity>
 
         <activity
-            android:name=".DevelopmentSettingsActivity"
-            android:exported="true"
-            android:label="開発者向けオプション">
+            android:name=".DchaStateChangeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <receiver
-            android:name=".DeviceAdminReceiver"
-            android:exported="false"
-            android:permission="android.permission.BIND_DEVICE_ADMIN">
-            <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
-            </intent-filter>
-            <meta-data
-                android:name="android.app.device_admin"
-                android:resource="@xml/device_admin" />
-        </receiver>
 
     </application>
 
