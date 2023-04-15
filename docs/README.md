@@ -5,7 +5,7 @@
 [**こちら**](HowTo.md)をご覧ください
 
 ## 改造後について
-[Ver**2.0**](https://github.com/mouseos/Cpad_dcha_3_changer/releases/tag/Ver2.0)からは､ ワンクリックで **DchaState** を変更できる様にアップデートしました｡  
+[Ver**2.0**](https://github.com/mouseos/Cpad_dcha_3_changer/releases/latest)からは､ ワンクリックで **DchaState** を変更できる様にアップデートしました｡  
 ｢**DchaState Changer**｣が このアプリの名前です｡
 
 ### 設定アプリから変更
