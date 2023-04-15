@@ -22,6 +22,9 @@
     </sslLocations>
     <defaultSOCKSTransparentHTTPProxyPorts>true</defaultSOCKSTransparentHTTPProxyPorts>
   </proxyConfiguration>
+  <!--accessControlConfiguration>
+    <warn>false</warn>
+  </accessControlConfiguration-->
   <toolConfiguration>
     <configs>
       <entry>

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jp.co.benesse.touch.setuplogin">
 
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-sdk android:maxSdkVersion="28" />
 
     <application
         android:icon="@android:mipmap/sym_def_app_icon"
@@ -14,16 +14,16 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
         <activity
-            android:name=".DchaStateChangeActivity"
+            android:name=".DchaStateChanger"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
