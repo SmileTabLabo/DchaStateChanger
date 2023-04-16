@@ -7,8 +7,10 @@ import android.os.BenesseExtension;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import jp.co.benesse.dcha.dchaservice.DchaService;
 
 public class LoginSettingActivity extends Activity {
+    DchaService Dcha;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class LoginSettingActivity extends Activity {
             msg = "このアプリをアンインストールしてください";
         }
         // ナビゲーションバーを表示
-        BenesseExtension.putInt("hide_navigation_bar", 0);
+        Dcha.hideNavigationBar(false);
         // 文字表示
         textView.setText(msg);
         setContentView(linearLayout);
