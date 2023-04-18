@@ -9,5 +9,5 @@
 # Android Studio Signing APK
 /app/debug/
 /app/release/
-# Jadx
-/app/libs/*.cache/
+# jadx
+/app/libs/*.jar.cache/
