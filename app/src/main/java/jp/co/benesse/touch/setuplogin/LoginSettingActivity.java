@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.BenesseExtension;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import jp.co.benesse.dcha.dchaservice.DchaService;
+import jp.co.benesse.dcha.dchaservice.IDchaService;
 
 public class LoginSettingActivity extends Activity {
-    DchaService Dcha;
+    IDchaService mDchaService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +32,9 @@ public class LoginSettingActivity extends Activity {
             msg = "このアプリをアンインストールしてください";
         }
         // ナビゲーションバーを表示
-        Dcha.hideNavigationBar(false);
+        try {
+            mDchaService.hideNavigationBar(false);
+        } catch (RemoteException ignored) {}
         // 文字表示
         textView.setText(msg);
         setContentView(linearLayout);
