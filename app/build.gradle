@@ -4,13 +4,14 @@ plugins {
 
 android {
     compileSdk 28
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId 'jp.co.benesse.touch.setuplogin'
         minSdk 28
         targetSdk 22
-        versionCode 18
-        versionName "2.1.1"
+        versionCode 19
+        versionName "2.2"
     }
 
     signingConfigs {
@@ -27,10 +28,14 @@ android {
             debuggable false
             signingConfig signingConfigs.android
             minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
             signingConfig signingConfigs.android
             minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
