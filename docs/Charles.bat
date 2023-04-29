@@ -8,9 +8,9 @@ if not %ERRORLEVEL% == 0 (
 )
 
 echo 受信規制を許可します...
-netsh advfirewall firewall add rule name="Charles" dir=in action=allow program="%PROGRAMFILES%\Charles\Charles.exe"
+netsh advfirewall firewall add rule name="Charles Web Debugging Proxy" dir=in action=allow program="%PROGRAMFILES%\Charles\Charles.exe"
 echo 送信規制を許可します...
-netsh advfirewall firewall add rule name="Charles" dir=out action=allow program="%PROGRAMFILES%\Charles\Charles.exe"
+netsh advfirewall firewall add rule name="Charles Web Debugging Proxy" dir=out action=allow program="%PROGRAMFILES%\Charles\Charles.exe"
 
 echo 完了しました
 timeout /t 10
