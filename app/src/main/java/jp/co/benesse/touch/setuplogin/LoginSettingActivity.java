@@ -3,12 +3,11 @@ package jp.co.benesse.touch.setuplogin;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import static android.content.pm.PackageManager.*;
+import static android.net.Uri.parse;
 import static android.os.BenesseExtension.*;
 import static android.provider.Settings.System.putInt;
 
@@ -29,10 +28,10 @@ public class LoginSettingActivity extends Activity {
             msg = "DchaState を 3 に設定しました";
         } else {
             // 必要無い場合はアンインストールを要求
-            startActivity(new Intent(Intent.ACTION_DELETE).setData(Uri.parse("package:jp.co.benesse.touch.setuplogin")));
+            startActivity(new Intent(Intent.ACTION_DELETE).setData(parse("package:jp.co.benesse.touch.setuplogin")));
             msg = "このアプリをアンインストールしてください";
-            // LAUNCHER を無効化
-            getPackageManager().setComponentEnabledSetting(new ComponentName(this, jp.co.benesse.touch.setuplogin.DchaStateChanger.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+            // アクティビティを無効化
+            getPackageManager().setComponentEnabledSetting(new ComponentName(this, jp.co.benesse.touch.setuplogin.DchaStateChanger.class), 2, 1);
         }
         // ナビゲーションバーを表示
         putInt(getContentResolver(), "hide_navigation_bar", 0);
