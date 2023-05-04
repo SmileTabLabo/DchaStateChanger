@@ -114,29 +114,39 @@ Charlesを以下のURLからインストールします｡
 ※ユーザー情報入力画面やエラーが出た場合は設定にミスがあります｡ 戻って確認してください｡
 また､ 連続で失敗するとエラーを吐き続ける場合があるので､ その際は一度初期化してから再度試みてください｡
 
-１５，ホームから設定アプリを開き､ 以下の通りに開発者向けオプションを開きます｡
+１５，ホームから設定アプリを開き､ 以下の通りにアンインストールブロックを設定します｡  
+`セキュリティと現在地情報`→`端末管理アプリ`→`DchaState Changer`→`この端末管理アプリを有効にする`  
 ※ホーム画面を開いた後､ 再度ウィジェットに触れないように注意してください｡  
 
+１６，設定アプリのトップに戻り､ 以下の通りに開発者向けオプションを開きます｡  
 `システム`→`詳細設定`→`タブレット情報`→`詳細設定`→`ビルド番号`を７回タップ
 
 1つ前の画面に戻り､ `開発者向けオプション`を開く｡
 
 ※パスワードを要求された場合は失敗です｡ １２番に戻ってください｡
 
-１６，`USBデバッグ`をオンにし､ PCで以下のADBコマンドを実行します｡
+１７，`USBデバッグ`をオンにし､ PCで以下のADBコマンドを実行します｡
 ```
 adb shell pm uninstall --user 0 jp.co.benesse.dcha.dchaservice
 ```
 ```
+adb shell pm uninstall --user 0 jp.co.benesse.dcha.setupwizard
+```
+```
 adb shell settings put system dcha_state 0
 ```
+<!--
+```
+adb shell am start -n jp.co.benesse.touch.setuplogin/.DchaStateChanger
+```
+-->
 
-１７，PCで **Nova Launcher** のAPKファイルをダウンロードします｡
+１８，PCで **Nova Launcher** のAPKファイルをダウンロードします｡
 
 Nova Launcher  
 <https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057>
 
-１８，ダウンロードしたAPKのあるディレクトリで以下のコマンドを実行します｡
+１９，ダウンロードしたAPKのあるディレクトリで以下のコマンドを実行します｡
 ```
 adb install .\NovaLauncher_7.0.57.apk
 ```
@@ -144,8 +154,8 @@ adb install .\NovaLauncher_7.0.57.apk
 adb shell pm set-home-activity --user 0 com.teslacoilsw.launcher/.NovaLauncher
 ```
 
-１９，チャレンジパッドのホームボタンを押します｡
+２０，チャレンジパッドのホームボタンを押します｡
 
-２０，Nova Launcherの初期設定をします｡
+２１，Nova Launcherの初期設定をします｡
 
 これで改造完了です｡

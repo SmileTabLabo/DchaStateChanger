@@ -10,8 +10,8 @@ android {
         applicationId 'jp.co.benesse.touch.setuplogin'
         minSdk 28
         targetSdk 22
-        versionCode 19
-        versionName "2.2"
+        versionCode 20
+        versionName "2.2.1"
     }
 
     signingConfigs {
