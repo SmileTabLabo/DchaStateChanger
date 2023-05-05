@@ -31,7 +31,7 @@ public class LoginSettingActivity extends Activity {
             startActivity(new Intent(Intent.ACTION_DELETE).setData(parse("package:jp.co.benesse.touch.setuplogin")));
             msg = "このアプリをアンインストールしてください";
             // アクティビティを無効化
-            getPackageManager().setComponentEnabledSetting(new ComponentName(this, jp.co.benesse.touch.setuplogin.DchaStateChanger.class), 2, 1);
+            getPackageManager().setComponentEnabledSetting(new ComponentName(this, DchaStateChanger.class), 2, 1);
         }
         // ナビゲーションバーを表示
         putInt(getContentResolver(), "hide_navigation_bar", 0);
