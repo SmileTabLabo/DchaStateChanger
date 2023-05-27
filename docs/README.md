@@ -1,4 +1,5 @@
 # DchaState Changer
+[![Build](https://github.com/mouseos/Cpad_dcha_3_changer/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/mouseos/Cpad_dcha_3_changer/actions/workflows/build.yml)
 
 ## 改造方法 & 注意事項
 
