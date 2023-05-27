@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
-        android:icon="@android:drawable/ic_launcher_android"
+        android:icon="@android:mipmap/sym_def_app_icon"
         android:label="DchaState Changer"
         android:theme="@android:style/Theme.DeviceDefault">
 
