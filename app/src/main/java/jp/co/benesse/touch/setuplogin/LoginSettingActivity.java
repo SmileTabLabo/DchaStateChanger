@@ -3,41 +3,33 @@ package jp.co.benesse.touch.setuplogin;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import static android.net.Uri.parse;
 import static android.os.BenesseExtension.*;
-import static android.provider.Settings.System.putInt;
 
 public class LoginSettingActivity extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // 文字表示のセットアップ
+    public void onCreate(Bundle savedInstanceState) {
         String msg;
+        super.onCreate(savedInstanceState);
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setGravity(17);
         TextView textView = new TextView(this);
         linearLayout.addView(textView, new LinearLayout.LayoutParams(-2, -2));
-        textView.setTextSize(2, 50);
-        // DchaStateが３に成った形跡が有る場合
+        textView.setTextSize(2, 50.0f);
         if (COUNT_DCHA_COMPLETED_FILE.exists()) {
-            // DchaStateを３に変更
             setDchaState(3);
-            msg = "DchaState を 3 に設定しました";
-            // アクティビティを有効化
             getPackageManager().setComponentEnabledSetting(new ComponentName(this, DchaStateChanger.class), 1, 1);
+            msg = "DchaState を 3 に設定しました";
         } else {
-            // 必要無い場合はアンインストールを要求
             Intent intent = new Intent("android.intent.action.DELETE");
-            startActivity(intent.setData(parse("package:" + getPackageName())));
+            startActivity(intent.setData(Uri.parse("package:" + getPackageName())));
             msg = "このアプリをアンインストールしてください";
         }
-        // ナビゲーションバーを表示
-        putInt(getContentResolver(), "hide_navigation_bar", 0);
-        // 文字表示
+        Settings.System.putInt(getContentResolver(), "hide_navigation_bar", 0);
         textView.setText(msg);
         setContentView(linearLayout);
     }
