@@ -22,9 +22,6 @@
     </sslLocations>
     <defaultSOCKSTransparentHTTPProxyPorts>true</defaultSOCKSTransparentHTTPProxyPorts>
   </proxyConfiguration>
-  <!--accessControlConfiguration>
-    <warn>false</warn>
-  </accessControlConfiguration-->
   <toolConfiguration>
     <configs>
       <entry>
@@ -34,7 +31,7 @@
           <sets>
             <rewriteSet>
               <active>true</active>
-              <name>Cpad_dcha_3_changer</name>
+              <name>DchaState Changer</name>
               <hosts>
                 <locationPatterns>
                   <locationMatch>
@@ -68,7 +65,7 @@
             </rewriteSet>
             <rewriteSet>
               <active>true</active>
-              <name>Light SpeedTest</name>
+              <name>スピードテスト</name>
               <hosts>
                 <locationPatterns>
                   <locationMatch>
