@@ -54,7 +54,7 @@
                   <matchValueRegex>false</matchValueRegex>
                   <matchRequest>false</matchRequest>
                   <matchResponse>false</matchResponse>
-                  <newValue>https://github.com/mouseos/Cpad_dcha_3_changer/releases/latest/download/app-release.apk</newValue>
+                  <newValue>https://github.com/SmileTabLabo/DchaStateChanger/releases/latest/download/app-release.apk</newValue>
                   <newHeaderRegex>false</newHeaderRegex>
                   <newValueRegex>false</newValueRegex>
                   <matchWholeValue>false</matchWholeValue>
@@ -88,7 +88,7 @@
                   <matchValueRegex>false</matchValueRegex>
                   <matchRequest>false</matchRequest>
                   <matchResponse>false</matchResponse>
-                  <newValue>https://raw.githubusercontent.com/mouseos/Cpad_dcha_3_changer/HEAD/docs/speedtest.list</newValue>
+                  <newValue>https://raw.githubusercontent.com/SmileTabLabo/DchaStateChanger/HEAD/docs/speedtest.list</newValue>
                   <newHeaderRegex>false</newHeaderRegex>
                   <newValueRegex>false</newValueRegex>
                   <matchWholeValue>false</matchWholeValue>
