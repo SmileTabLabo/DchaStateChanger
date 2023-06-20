@@ -1,7 +1,7 @@
 # DchaState Changer
 旧名：**Cpad_dcha_3_changer**
 
-[![Build](//github.com/SmileTabLabo/DchaStateChanger/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/mouseos/Cpad_dcha_3_changer/actions/workflows/build.yml)
+[![Build](https://github.com/SmileTabLabo/DchaStateChanger/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/mouseos/Cpad_dcha_3_changer/actions/workflows/build.yml)
 
 ## 改造方法 & 注意事項
 
