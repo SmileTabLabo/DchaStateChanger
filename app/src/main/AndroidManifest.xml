@@ -6,17 +6,16 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
-        android:icon="@android:mipmap/sym_def_app_icon"
         android:label="DchaState Changer"
         android:theme="@android:style/Theme.DeviceDefault">
 
         <activity
             android:name=".LoginSettingActivity"
             android:autoRemoveFromRecents="false"
+            android:exported="true"
             android:noHistory="false"
             android:screenOrientation="locked"
-            android:stateNotNeeded="true"
-            android:exported="true">
+            android:stateNotNeeded="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -25,13 +24,14 @@
 
         <activity
             android:name=".DchaStateChanger"
-            android:enabled="false"
             android:autoRemoveFromRecents="true"
             android:clearTaskOnLaunch="true"
+            android:enabled="false"
+            android:exported="true"
             android:finishOnTaskLaunch="true"
+            android:icon="@android:mipmap/sym_def_app_icon"
             android:noHistory="true"
-            android:stateNotNeeded="true"
-            android:exported="true">
+            android:stateNotNeeded="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
