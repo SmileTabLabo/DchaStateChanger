@@ -11,11 +11,8 @@
 
         <activity
             android:name=".LoginSettingActivity"
-            android:autoRemoveFromRecents="false"
             android:exported="true"
-            android:noHistory="false"
-            android:screenOrientation="locked"
-            android:stateNotNeeded="true">
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -24,14 +21,9 @@
 
         <activity
             android:name=".DchaStateChanger"
-            android:autoRemoveFromRecents="true"
-            android:clearTaskOnLaunch="true"
             android:enabled="false"
             android:exported="true"
-            android:finishOnTaskLaunch="true"
-            android:icon="@android:mipmap/sym_def_app_icon"
-            android:noHistory="true"
-            android:stateNotNeeded="true">
+            android:icon="@android:mipmap/sym_def_app_icon">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
@@ -41,7 +33,6 @@
 
         <receiver
             android:name=".DeviceAdminReceiver"
-            android:exported="false"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
