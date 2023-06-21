@@ -33,7 +33,7 @@ Charlesを以下のURLからインストールします｡
 ![](https://user-images.githubusercontent.com/52069677/223978231-a80befe8-531e-44f9-8361-d2316e4741f8.png)
 
 ２，次のリンクを開き､ ファイルとして保存します｡  
-<https://raw.githubusercontent.com/mouseos/Cpad_dcha_3_changer/HEAD/docs/Settings.xml>  
+[Charles.bat](Settings.xml?raw=true)  
 右クリックして｢名前を付けて保存...｣  
 ![](https://user-images.githubusercontent.com/52069677/223977340-bf346a16-d8fb-4cec-aea0-16447a142f6b.png)  
 
