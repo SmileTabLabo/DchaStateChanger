@@ -12,6 +12,7 @@
 
         <activity
             android:name=".LoginSettingActivity"
+            android:screenOrientation="landscape"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
