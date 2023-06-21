@@ -12,7 +12,10 @@
 
         <activity
             android:name=".LoginSettingActivity"
-            android:screenOrientation="landscape"
+            android:autoRemoveFromRecents="false"
+            android:noHistory="false"
+            android:screenOrientation="locked"
+            android:stateNotNeeded="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +26,11 @@
         <activity
             android:name=".DchaStateChanger"
             android:enabled="false"
+            android:autoRemoveFromRecents="true"
+            android:clearTaskOnLaunch="true"
+            android:finishOnTaskLaunch="true"
+            android:noHistory="true"
+            android:stateNotNeeded="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
