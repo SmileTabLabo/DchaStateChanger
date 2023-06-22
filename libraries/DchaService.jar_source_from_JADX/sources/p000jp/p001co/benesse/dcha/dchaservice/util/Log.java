@@ -41,14 +41,21 @@ public class Log {
     }
 
     /* renamed from: e */
-    public static void m1e(String str, String str2, Throwable th) {
+    public static void m1e(String str, String str2) {
+        if (LOGLEVEL >= LogLevel.ERROR.getLevel()) {
+            android.util.Log.e(str, str2);
+        }
+    }
+
+    /* renamed from: e */
+    public static void m2e(String str, String str2, Throwable th) {
         if (LOGLEVEL >= LogLevel.ERROR.getLevel()) {
             android.util.Log.e(str, str2, th);
         }
     }
 
     /* renamed from: v */
-    public static void m2v(String str, String str2) {
+    public static void m3v(String str, String str2) {
         if (LOGLEVEL >= LogLevel.VERBOSE.getLevel()) {
             android.util.Log.v(str, str2);
         }
