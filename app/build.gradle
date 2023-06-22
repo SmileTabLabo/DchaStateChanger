@@ -40,6 +40,6 @@ android {
     }
 }
 dependencies {
-    // CTX/CTZ Only
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly files('libs/BenesseExtension.jar')
+    implementation files('libs/IDchaService.jar')
 }
