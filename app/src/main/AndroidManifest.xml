@@ -33,6 +33,7 @@
 
         <receiver
             android:name=".DeviceAdminReceiver"
+            android:description="アンインストールをブロックします"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
