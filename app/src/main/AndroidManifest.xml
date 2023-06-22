@@ -3,7 +3,6 @@
     package="jp.co.benesse.touch.setuplogin">
 
     <uses-sdk android:maxSdkVersion="28" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- DchaService -->
     <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
 
@@ -13,8 +12,7 @@
 
         <activity
             android:name=".LoginSettingActivity"
-            android:exported="true"
-            android:screenOrientation="locked">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -35,6 +33,7 @@
 
         <receiver
             android:name=".DeviceAdminReceiver"
+            android:exported="false"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
