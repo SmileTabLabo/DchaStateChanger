@@ -4,6 +4,8 @@
 
     <uses-sdk android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- DchaService -->
+    <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
 
     <application
         android:label="DchaState Changer"
