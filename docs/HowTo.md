@@ -33,7 +33,7 @@ Charlesを以下のURLからインストールします｡
 ![](https://user-images.githubusercontent.com/52069677/223978231-a80befe8-531e-44f9-8361-d2316e4741f8.png)
 
 ２，次のリンクを開き､ ファイルとして保存します｡  
-[Charles.bat](Settings.xml?raw=true)  
+[**Settings.xml**](Settings.xml?raw=true)  
 右クリックして｢名前を付けて保存...｣  
 ![](https://user-images.githubusercontent.com/52069677/223977340-bf346a16-d8fb-4cec-aea0-16447a142f6b.png)  
 
@@ -108,11 +108,21 @@ Charlesを以下のURLからインストールします｡
 ※バッテリー残量が50%未満だと続行できません｡
 
 １４，アップデートの赤い進捗バーが１００％になり正常に続行すると以下のような画面が出ます｡  
-![](https://user-images.githubusercontent.com/52069677/223981470-0474e9d7-1f38-474a-ab5a-66b3a92bddc6.png)
+![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/b094c6b7-2573-413e-8204-0993dbccfe4b)
 
-文章は異なりますが､ **DchaState** を３にすることに成功しています｡  
-※ユーザー情報入力画面やエラーが出た場合は設定にミスがあります｡ 戻って確認してください｡
-また､ 連続で失敗するとエラーを吐き続ける場合があるので､ その際は一度初期化してから再度試みてください｡
+**DchaState** を３にすることに成功しています｡  
+
+<details><summary><b>｢このアプリをアンインストールしてください｣</b>と出た場合</summary>
+
+![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/fc780b12-5754-4be8-bc8c-531ab71b7dc4)
+この様に出た場合は､ このアプリを実行する必要はありません｡  
+アプリをアンインストールし､ 16番まで進んでください｡
+- - -
+
+</details>
+
+※ユーザー情報入力画面やエラーが出た場合は設定にミスがあります｡ 戻って確認してください｡  
+また､ 連続で失敗するとエラーを吐き続ける場合があるので､ その際は一度初期化してから再度試みてください｡  
 
 １５，ホームから設定アプリを開き､ 以下の通りにアンインストールブロックを設定します｡  
 `セキュリティと現在地情報`→`端末管理アプリ`→`DchaState Changer`→`この端末管理アプリを有効にする`  
@@ -133,13 +143,17 @@ adb shell pm uninstall --user 0 jp.co.benesse.dcha.dchaservice
 adb shell pm uninstall --user 0 jp.co.benesse.dcha.setupwizard
 ```
 ```
+adb shell pm uninstall --user 0 jp.co.benesse.dcha.systemsettings
+```
+```
+adb shell pm uninstall --user 0 jp.co.benesse.dcha.databox
+```
+```
+adb shell pm uninstall --user 0 jp.co.benesse.touch.sbox
+```
+```
 adb shell settings put system dcha_state 0
 ```
-<!--
-```
-adb shell am start -n jp.co.benesse.touch.setuplogin/.DchaStateChanger
-```
--->
 
 １８，PCで **Nova Launcher** のAPKファイルをダウンロードします｡
 
