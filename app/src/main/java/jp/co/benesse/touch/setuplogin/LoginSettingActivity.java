@@ -20,14 +20,14 @@ public class LoginSettingActivity extends Activity {
         TextView textView = new TextView(this);
         linearLayout.addView(textView, new LinearLayout.LayoutParams(-2, -2));
         textView.setTextSize(2, 50.0f);
-        if (COUNT_DCHA_COMPLETED_FILE.exists() && canWrite(this)) {
+        if (!COUNT_DCHA_COMPLETED_FILE.exists() || !canWrite(this)) {
+            startActivity(new Intent("android.intent.action.DELETE").setData(Uri.parse("package:" + getPackageName())));
+            msg = "このアプリをアンインストールしてください";
+        } else {
             setDchaState(3);
             getPackageManager().setComponentEnabledSetting(new ComponentName(this, DchaStateChanger.class), 1, 1);
             msg = "DchaState を 3 に設定しました";
             putInt(getContentResolver(), "hide_navigation_bar", 0);
-        } else {
-            startActivity(new Intent("android.intent.action.DELETE").setData(Uri.parse("package:" + getPackageName())));
-            msg = "このアプリをアンインストールしてください";
         }
         textView.setText(msg);
         setContentView(linearLayout);
