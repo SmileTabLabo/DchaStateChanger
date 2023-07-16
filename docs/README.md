@@ -8,12 +8,12 @@
 [**こちら**](HowTo.md)をご覧ください
 
 ## 改造後について
-[Ver**2.0**](https://github.com/SmileTabLabo/DchaStateChanger/releases/latest)からは､ ワンクリックで **DchaState** を変更できる様にアップデートしました｡  
-｢**DchaState Changer**｣が このアプリの名前です｡
+このアプリには､ 設定アプリからワンクリックで **DchaState** を変更できる機能があります｡  
 
-### 設定アプリから変更
 `アプリと通知`  
 →`XX個のアプリをすべて表示`  
 →`DchaState Changer`  
 →`詳細設定`  
 →`アプリ内のその他の設定`
+
+この｢**アプリ内のその他の設定**｣を押す度に値が変わります｡

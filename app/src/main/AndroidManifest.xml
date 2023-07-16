@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="jp.co.benesse.touch.setuplogin">
 
-    <uses-sdk android:maxSdkVersion="28" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
+        android:appCategory="productivity"
         android:label="DchaState Changer"
-        android:theme="@android:style/Theme.DeviceDefault">
+        android:theme="@android:style/Theme.DeviceDefault"
+        tools:ignore="MissingApplicationIcon">
 
         <activity
             android:name=".LoginSettingActivity"
@@ -36,10 +39,12 @@
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <!--action android:name="android.app.action.DEVICE_ADMIN_DISABLED" /-->
             </intent-filter>
             <meta-data
                 android:name="android.app.device_admin"
-                android:resource="@xml/device_admin" />
+                android:resource="@xml/device_admin"
+                tools:ignore="DeviceAdmin" />
         </receiver>
 
     </application>

@@ -47,7 +47,7 @@ Charlesを以下のURLからインストールします｡
 保存先は分かりやすい場所にしてください｡
 
 ５，`Help`→`Local IP Addresses`を開き､ PCのIPアドレスをメモします｡  
-`192.168.`で始まるものが必要です｡
+通常は､ `192.168.`で始まるものが必要です｡
 
 ![](https://user-images.githubusercontent.com/52069677/205293725-fa181ca2-f946-4220-bbe9-2a41b1b81f0a.png)
 
@@ -74,7 +74,9 @@ Charlesを以下のURLからインストールします｡
 `証明書の名前を指定する`と言ったダイアログが開くので､ 適当に名前を付けて`OK`を押します｡  
 ｢`VPNとアプリ`｣のまま変更しないでください｡
 
-パスワード設定を要求されるので設定します｡
+パスワード設定を要求されるので設定します｡  
+※この際､ ｢起動時の保護｣は｢**いいえ**｣を選択してください｡
+![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/c59af69d-7fed-40e6-b661-b897e2e3b6da)
 
 ９，証明書がインストール出来たら１つ前の画面に戻り､ `Wi-Fi の使用` を有効にします｡ 
 次に､ 接続するWi-FiのSSID名を選択して､ `詳細設定`→`プロキシ` を｢`なし`｣から｢`手動`｣に設定します｡ 
@@ -94,29 +96,27 @@ Charlesを以下のURLからインストールします｡
 また､ これが出てこなかった場合は どこか手順を間違えているか､ パソコンやルーターの設定で**セパレータ**が動作している可能性があります｡  
 詳しくは[こちら](Separator.md)をご覧下さい｡
 
-１１，チャレパ側で設定のトップに戻り､  
-`セキュリティと現在地情報`→`画面ロック`に入ります｡
-
-パスワードが要求されるので､ 入力後｢`なし`｣を選択します｡
-
-１２，ホーム画面に戻り､ スタートボタンを押します｡
+１１，ホーム画面に戻り､ スタートボタンを押します｡
 
 ![](https://user-images.githubusercontent.com/52069677/164911100-959604e3-d1c9-4250-9b95-94fbb2b0de62.png)
 
-１３，画面に従って初期設定を進めます｡
+１２，画面に従って初期設定を進めます｡
 
 ※バッテリー残量が50%未満だと続行できません｡
 
-１４，アップデートの赤い進捗バーが１００％になり正常に続行すると以下のような画面が出ます｡  
-![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/b094c6b7-2573-413e-8204-0993dbccfe4b)
+１３，アップデートの赤い進捗バーが１００％になり正常に続行すると以下のような画面が出ます｡  
 
-**DchaState** を３にすることに成功しています｡  
+![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/88e9874c-00f5-44d4-b03c-1787b3b54bbb)
+｢**この端末管理アプリを有効にする**｣を選択してください｡
+
+![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/b094c6b7-2573-413e-8204-0993dbccfe4b)
+この画面になったら､ ホームボタンを押します｡
 
 <details><summary><b>｢このアプリをアンインストールしてください｣</b>と出た場合</summary>
 
 ![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/fc780b12-5754-4be8-bc8c-531ab71b7dc4)
 この様に出た場合は､ このアプリを実行する必要はありません｡  
-アプリをアンインストールし､ 16番まで進んでください｡
+アプリをアンインストールし､ 次のステップへ進んでください｡
 - - -
 
 </details>
@@ -124,18 +124,14 @@ Charlesを以下のURLからインストールします｡
 ※ユーザー情報入力画面やエラーが出た場合は設定にミスがあります｡ 戻って確認してください｡  
 また､ 連続で失敗するとエラーを吐き続ける場合があるので､ その際は一度初期化してから再度試みてください｡  
 
-１５，ホームから設定アプリを開き､ 以下の通りにアンインストールブロックを設定します｡  
-`セキュリティと現在地情報`→`端末管理アプリ`→`DchaState Changer`→`この端末管理アプリを有効にする`  
-※ホーム画面を開いた後､ 再度ウィジェットに触れないように注意してください｡  
+１５，ホームから設定アプリを開き､ 以下の通りに開発者向けオプションを開きます｡  
+※この際､ ホーム画面の**スタートウィジェットを再度押さない様に注意してください**｡
 
-１６，設定アプリのトップに戻り､ 以下の通りに開発者向けオプションを開きます｡  
 `システム`→`詳細設定`→`タブレット情報`→`詳細設定`→`ビルド番号`を７回タップ
 
 1つ前の画面に戻り､ `開発者向けオプション`を開く｡
 
-※パスワードを要求された場合は失敗です｡ １２番に戻ってください｡
-
-１７，`USBデバッグ`をオンにし､ PCで以下のADBコマンドを実行します｡
+１６，`USBデバッグ`をオンにし､ PCで以下のADBコマンドを実行します｡
 ```
 adb shell pm uninstall --user 0 jp.co.benesse.dcha.dchaservice
 ```
@@ -155,12 +151,18 @@ adb shell pm uninstall --user 0 jp.co.benesse.touch.sbox
 adb shell settings put system dcha_state 0
 ```
 
-１８，PCで **Nova Launcher** のAPKファイルをダウンロードします｡
+これで改造の準備は完了です｡
+
+---
+
+### NovaLauncher のインストール方法
+
+PCで **Nova Launcher** のAPKファイルをダウンロードします｡
 
 Nova Launcher  
 <https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057>
 
-１９，ダウンロードしたAPKのあるディレクトリで以下のコマンドを実行します｡
+ダウンロードしたAPKのあるディレクトリで以下のコマンドを実行します｡
 ```
 adb install .\NovaLauncher_7.0.57.apk
 ```
@@ -168,8 +170,4 @@ adb install .\NovaLauncher_7.0.57.apk
 adb shell pm set-home-activity --user 0 com.teslacoilsw.launcher/.NovaLauncher
 ```
 
-２０，チャレンジパッドのホームボタンを押します｡
-
-２１，Nova Launcherの初期設定をします｡
-
-これで改造完了です｡
+ホームボタンを押すと､ Nova Launcher が起動するので､ 画面に従って初期設定を行ってください｡
