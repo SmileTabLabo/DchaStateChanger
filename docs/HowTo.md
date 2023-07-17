@@ -114,11 +114,11 @@ Charlesを以下のURLからインストールします｡
 
 <details><summary><b>｢このアプリをアンインストールしてください｣</b>と出た場合</summary>
 
-![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/fc780b12-5754-4be8-bc8c-531ab71b7dc4)  
-この様に出た場合は､ このアプリを実行する必要はありません｡    
-アプリをアンインストールし､ 次のステップへ進んでください｡
+<p><img src="https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/fc780b12-5754-4be8-bc8c-531ab71b7dc4" alt="" /><br />
+この様に出た場合は､ このアプリを実行する必要はありません｡<br />
+アプリをアンインストールし､ 次のステップへ進んでください｡</p>
 
----
+<hr />
 
 </details>
 
