@@ -54,7 +54,7 @@ Charlesを以下のURLからインストールします｡
 この場合は`192.168.11.9`です｡
 
 ６，チャレンジパッドとPCをUSB接続します｡  
-チャレンジパッドの通知領域に｢`Androidシステム・この端末を USB で充電中`｣と表示されているので､ ダブルタップしてUSBの設定を開きます｡
+チャレンジパッドの通知領域に｢`Androidシステム・この端末を USB で充電中`｣と表示されているので､ ダブルタップしてUSBの設定を開きます｡  
 ![](https://user-images.githubusercontent.com/52069677/164910761-156ca2b0-11e3-4f51-9832-1ea2128c834b.png)  
 
 ｢`USB の使用`｣の項目で｢`ファイル転送`｣を選択してください｡  
@@ -114,10 +114,11 @@ Charlesを以下のURLからインストールします｡
 
 <details><summary><b>｢このアプリをアンインストールしてください｣</b>と出た場合</summary>
 
-![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/fc780b12-5754-4be8-bc8c-531ab71b7dc4)
-この様に出た場合は､ このアプリを実行する必要はありません｡  
+![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/fc780b12-5754-4be8-bc8c-531ab71b7dc4)  
+この様に出た場合は､ このアプリを実行する必要はありません｡    
 アプリをアンインストールし､ 次のステップへ進んでください｡
-- - -
+
+---
 
 </details>
 
@@ -132,6 +133,10 @@ Charlesを以下のURLからインストールします｡
 1つ前の画面に戻り､ `開発者向けオプション`を開く｡
 
 １５，`USBデバッグ`をオンにし､ PCで以下のADBコマンドを実行します｡
+
+```
+adb shell settings put system dcha_state 0
+```
 ```
 adb shell pm uninstall --user 0 jp.co.benesse.dcha.dchaservice
 ```
@@ -147,10 +152,6 @@ adb shell pm uninstall --user 0 jp.co.benesse.dcha.databox
 ```
 adb shell pm uninstall --user 0 jp.co.benesse.touch.sbox
 ```
-```
-adb shell settings put system dcha_state 0
-```
-
 これで改造の準備は完了です｡
 
 ---
