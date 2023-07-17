@@ -16,6 +16,10 @@ import static android.os.BenesseExtension.*;
 
 public class LoginSettingActivity extends Activity {
     String msg;
+
+    public void onBackPressed() {
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LinearLayout linearLayout = new LinearLayout(this);
