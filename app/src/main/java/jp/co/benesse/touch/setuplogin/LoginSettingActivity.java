@@ -19,14 +19,15 @@ import static android.widget.LinearLayout.LayoutParams.*;
 import static android.os.BenesseExtension.*;
 
 public class LoginSettingActivity extends Activity {
-    public String msg;
-    public float fontSize = 50.0F;
 
     public void onBackPressed() {
     }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String msg;
+        float fontSize = 50.0F;
 
         if (COUNT_DCHA_COMPLETED_FILE.exists() && canWrite(this)) {
             setDchaState(3);
