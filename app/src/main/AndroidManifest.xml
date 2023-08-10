@@ -39,7 +39,6 @@
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
-                <!--action android:name="android.app.action.DEVICE_ADMIN_DISABLED" /-->
             </intent-filter>
             <meta-data
                 android:name="android.app.device_admin"
