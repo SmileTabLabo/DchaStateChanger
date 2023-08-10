@@ -14,7 +14,10 @@
 
         <activity
             android:name=".LoginSettingActivity"
-            android:exported="true">
+            android:alwaysRetainTaskState="true"
+            android:clearTaskOnLaunch="true"
+            android:exported="true"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -24,8 +27,10 @@
         <activity
             android:name=".DchaStateChanger"
             android:enabled="false"
+            android:excludeFromRecents="true"
             android:exported="true"
-            android:icon="@android:mipmap/sym_def_app_icon">
+            android:icon="@android:mipmap/sym_def_app_icon"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
