@@ -7,7 +7,6 @@
         tools:ignore="ProtectedPermissions" />
 
     <application
-        android:appCategory="productivity"
         android:label="DchaState Changer"
         android:theme="@android:style/Theme.DeviceDefault"
         tools:ignore="MissingApplicationIcon">
@@ -30,6 +29,7 @@
             android:excludeFromRecents="true"
             android:exported="true"
             android:icon="@android:mipmap/sym_def_app_icon"
+            android:launchMode="singleInstance"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
