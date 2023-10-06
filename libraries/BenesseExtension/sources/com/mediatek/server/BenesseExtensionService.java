@@ -210,14 +210,45 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
      */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct add '--show-bad-code' argument
     */
-    private boolean checkHexFile(java.lang.String r7) {
-        /*
-            Method dump skipped, instructions count: 317
-            To view this dump add '--comments-level debug' option
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.mediatek.server.BenesseExtensionService.checkHexFile(java.lang.String):boolean");
+    private boolean checkHexFile(String str) {
+        try {
+            FileReader fileReader = new FileReader(str);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String str2 = null;
+            while (true) {
+                String readLine = bufferedReader.readLine();
+                if (readLine == null) {
+                    $closeResource(null, bufferedReader);
+                    $closeResource(null, fileReader);
+                    if (str2.charAt(7) == '0' && str2.charAt(8) == '1') {
+                        return true;
+                    }
+                    Log.e(TAG, "----- last line is not end of file! -----");
+                    return false;
+                } else if (readLine.charAt(0) != ';') {
+                    if (!readLine.matches(":[a-fA-F0-9]+") || readLine.length() % 2 == 0) {
+                        break;
+                    }
+                    int i = 0;
+                    for (int i2 = 1; i2 < readLine.length() - 1; i2 += 2) {
+                        i += (Character.digit(readLine.charAt(i2), 16) << 4) + Character.digit(readLine.charAt(i2 + 1), 16);
+                    }
+                    if ((i & 255) != 0) {
+                        Log.e(TAG, "----- wrong checksum! -----");
+                        $closeResource(null, bufferedReader);
+                        $closeResource(null, fileReader);
+                        return false;
+                    }
+                    str2 = readLine;
+                } else {
+                    Log.w(TAG, "----- found comment line. -----");
+                }
+            }
+        } catch (Throwable th) {
+            Log.e(TAG, "----- Exception occurred!!! -----", th);
+            return false;
+        }
     }
 
     private boolean executeFwUpdate(final UpdateParams updateParams) {
@@ -299,31 +330,15 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
      */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct add '--show-bad-code' argument
     */
-    private java.lang.String getLanguage() {
-        /*
-            r3 = this;
-            java.lang.String r0 = "persist.sys.locale"
-            java.lang.String r1 = "ja-JP"
-            java.lang.String r0 = android.os.SystemProperties.get(r0, r1)
-            r4 = r0
-            r0 = r4
-            if (r0 == 0) goto L18
-            r0 = r4
-            r5 = r0
-            r0 = r4
-            java.lang.String r1 = ""
-            boolean r0 = r0.equals(r1)
-            if (r0 == 0) goto L1b
-        L18:
-            java.lang.String r0 = "ja-JP"
-            r5 = r0
-        L1b:
-            r0 = r5
-            return r0
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.mediatek.server.BenesseExtensionService.getLanguage():java.lang.String");
+    private String getLanguage() {
+        String str;
+        String str2 = SystemProperties.get(PROPERTY_LOCALE, JAPAN_LOCALE);
+        if (str2 != null) {
+            str = str2;
+        }
+        str = JAPAN_LOCALE;
+        return str;
     }
 
     private UpdateParams getUpdateParams(String str, String str2) {
