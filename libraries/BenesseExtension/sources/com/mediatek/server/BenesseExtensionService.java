@@ -1,9 +1,11 @@
 package com.mediatek.server;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.graphics.Point;
@@ -15,6 +17,8 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBenesseExtensionService;
+import android.os.IBinder;
+import android.os.IStsExtensionService;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemProperties;
@@ -40,15 +44,24 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
     static final String BC_COMPATSCREEN = "bc:compatscreen";
     static final String BC_DT_FW_UPDATE = "bc:digitizer:fw_update";
     static final String BC_DT_FW_VERSION = "bc:digitizer:fw_version";
+    static final String BC_FTS_PALM_SIZE = "bc:touchpanel:palmreject:size";
+    static final String BC_FTS_PEN_BATTERY = "bc:pen:battery";
+    static final String BC_FTS_TP_FW_UPDATE = "bc:touchpanel:fts:fw_update";
+    static final String BC_FTS_TP_FW_VERSION = "bc:touchpanel:fts:fw_version";
     static final String BC_MAC_ADDRESS = "bc:mac_address";
     static final String BC_NIGHTCOLOR_CURRENT = "bc:nightcolor:current";
     static final String BC_NIGHTCOLOR_MAX = "bc:nightcolor:max";
     static final String BC_NIGHTCOLOR_MIN = "bc:nightcolor:min";
     static final String BC_NIGHTMODE_ACTIVE = "bc:nightmode:active";
+    static final String BC_NVT_PALM_SIZE = "bc:touchpanel:palmreject:size";
+    static final String BC_NVT_PEN_BATTERY = "bc:pen:battery";
+    static final String BC_NVT_TP_FW_UPDATE = "bc:touchpanel:nvt:fw_update";
+    static final String BC_NVT_TP_FW_VERSION = "bc:touchpanel:nvt:fw_version";
     static final String BC_PASSWORD_HIT_FLAG = "bc_password_hit";
     static final String BC_SERIAL_NO = "bc:serial_no";
     static final String BC_TP_FW_UPDATE = "bc:touchpanel:fw_update";
     static final String BC_TP_FW_VERSION = "bc:touchpanel:fw_version";
+    static final String BC_TP_LCD_TYPE = "bc:touchpanel:lcd_type";
     static final String DCHA_HASH_FILEPATH = "/factory/dcha_hash";
     static final String DCHA_STATE = "dcha_state";
     static final String EXTRA_RESULT = "result";
@@ -63,11 +76,17 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
     private ColorDisplayController mColorDisplayController;
     private Context mContext;
     private IWindowManager mWindowManager;
+    private int tp_type;
     static final File SYSFILE_TP_VERSION = new File("/sys/devices/platform/soc/11007000.i2c/i2c-0/0-000a/tp_fwver");
     static final File SYSFILE_DT_VERSION = new File("/sys/devices/platform/soc/11009000.i2c/i2c-2/2-0009/digi_fwver");
+    static final File SYSFILE_NVT_PARM_REJECT = new File("/sys/devices/platform/soc/1100f000.i2c/i2c-3/3-0062/tp_palm_reject");
+    static final File SYSFILE_FTS_PARM_REJECT = new File("/sys/devices/platform/soc/1100f000.i2c/i2c-3/3-0038/fts_palm_reject");
+    static final File PROC_NVT_TP_VERSION = new File("/proc/nvt_fw_version");
+    static final File FTS_TP_VERSION = new File("/sys/class/i2c-dev/i2c-3/device/3-0038/fts_fw_version");
     private static final byte[] DEFAULT_HASH = "a1e3cf8aa7858a458972592ebb9438e967da30d196bd6191cc77606cc60af183".getBytes();
     static final int[][] mTable = {new int[]{240, 1920, 1200}, new int[]{160, 1024, 768}, new int[]{160, 1280, 800}};
     private boolean mIsUpdating = false;
+    private IStsExtensionService mStsExtensionService = null;
     private final byte[] HEX_TABLE = "0123456789abcdef".getBytes();
     private Handler mHandler = new Handler(true);
     private ContentObserver mDchaStateObserver = new ContentObserver(this, this.mHandler) { // from class: com.mediatek.server.BenesseExtensionService.1
@@ -122,7 +141,40 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
             }
         }
     };
+    ServiceConnection mConn = new ServiceConnection(this) { // from class: com.mediatek.server.BenesseExtensionService.4
+        final BenesseExtensionService this$0;
+
+        {
+            this.this$0 = this;
+        }
+
+        @Override // android.content.ServiceConnection
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            this.this$0.mStsExtensionService = IStsExtensionService.Stub.asInterface(iBinder);
+        }
+
+        @Override // android.content.ServiceConnection
+        public void onServiceDisconnected(ComponentName componentName) {
+            this.this$0.mStsExtensionService = null;
+        }
+    };
     private Object mLock = new Object();
+
+    /* loaded from: BenesseExtension.jar:com/mediatek/server/BenesseExtensionService$BootCompletedReceiver.class */
+    private final class BootCompletedReceiver extends BroadcastReceiver {
+        final BenesseExtensionService this$0;
+
+        private BootCompletedReceiver(BenesseExtensionService benesseExtensionService) {
+            this.this$0 = benesseExtensionService;
+        }
+
+        @Override // android.content.BroadcastReceiver
+        public void onReceive(Context context, Intent intent) {
+            Intent intent2 = new Intent("com.sts.tottori.stsextension.StsExtensionService");
+            intent2.setPackage("com.sts.tottori.stsextension");
+            context.bindServiceAsUser(intent2, this.this$0.mConn, 1, UserHandle.CURRENT);
+        }
+    }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* loaded from: BenesseExtension.jar:com/mediatek/server/BenesseExtensionService$UpdateParams.class */
@@ -149,6 +201,7 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
     }
 
     BenesseExtensionService(Context context) {
+        this.tp_type = -1;
         this.mContext = context;
         synchronized (this.mLock) {
             this.mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(DCHA_STATE), false, this.mDchaStateObserver, -1);
@@ -162,6 +215,16 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
         this.mWindowManager = IWindowManager.Stub.asInterface(ServiceManager.checkService("window"));
         this.mColorDisplayController = new ColorDisplayController(context);
+        this.mContext.registerReceiver(new BootCompletedReceiver(), new IntentFilter("android.intent.action.BOOT_COMPLETED"));
+        if (PROC_NVT_TP_VERSION.exists()) {
+            Log.i(TAG, "----- TP:NVT -----");
+            this.tp_type = 0;
+        } else if (!FTS_TP_VERSION.exists()) {
+            Log.e(TAG, "----- TP:Unkown -----");
+        } else {
+            Log.i(TAG, "----- TP:FTS -----");
+            this.tp_type = 1;
+        }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -341,6 +404,287 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         return str;
     }
 
+    private String getLcdType() {
+        return (PROC_NVT_TP_VERSION.exists() || FTS_TP_VERSION.exists()) ? String.valueOf(this.tp_type) : "";
+    }
+
+    /*  JADX ERROR: JadxRuntimeException in pass: BlockProcessor
+        jadx.core.utils.exceptions.JadxRuntimeException: Found unreachable blocks
+        	at jadx.core.dex.visitors.blocks.DominatorTree.sortBlocks(DominatorTree.java:35)
+        	at jadx.core.dex.visitors.blocks.DominatorTree.compute(DominatorTree.java:25)
+        	at jadx.core.dex.visitors.blocks.BlockProcessor.computeDominators(BlockProcessor.java:202)
+        	at jadx.core.dex.visitors.blocks.BlockProcessor.processBlocksTree(BlockProcessor.java:45)
+        	at jadx.core.dex.visitors.blocks.BlockProcessor.visit(BlockProcessor.java:39)
+        */
+    private int getPalmrejectSize() {
+        /*
+            r4 = this;
+            java.lang.String r0 = "3"
+            r5 = r0
+            r0 = r4
+            int r0 = r0.tp_type
+            r6 = r0
+            r0 = 0
+            r7 = r0
+            r0 = 0
+            r8 = r0
+            r0 = 0
+            r9 = r0
+            r0 = 0
+            r10 = r0
+            r0 = r6
+            if (r0 != 0) goto Lc9
+            r0 = r5
+            r11 = r0
+            java.io.FileReader r0 = new java.io.FileReader     // Catch: java.lang.Throwable -> Lbb
+            r8 = r0
+            r0 = r5
+            r11 = r0
+            r0 = r8
+            java.io.File r1 = com.mediatek.server.BenesseExtensionService.SYSFILE_NVT_PARM_REJECT     // Catch: java.lang.Throwable -> Lbb
+            r0.<init>(r1)     // Catch: java.lang.Throwable -> Lbb
+            r0 = r5
+            r12 = r0
+            r0 = r10
+            r11 = r0
+            java.io.BufferedReader r0 = new java.io.BufferedReader     // Catch: java.lang.Throwable -> L9e
+            r9 = r0
+            r0 = r5
+            r12 = r0
+            r0 = r10
+            r11 = r0
+            r0 = r9
+            r1 = r8
+            r0.<init>(r1)     // Catch: java.lang.Throwable -> L9e
+            r0 = r9
+            java.lang.String r0 = r0.readLine()     // Catch: java.lang.Throwable -> L79
+            r11 = r0
+            r0 = 0
+            r1 = r9
+            $closeResource(r0, r1)     // Catch: java.lang.Throwable -> L6a
+            r0 = 0
+            r1 = r8
+            $closeResource(r0, r1)     // Catch: java.lang.Throwable -> L5b
+            goto Lc6
+        L5b:
+            r5 = move-exception
+            goto Lbc
+        L5f:
+            r13 = move-exception
+            r0 = r11
+            r12 = r0
+            r0 = r7
+            r5 = r0
+            goto Laa
+        L6a:
+            r13 = move-exception
+            r0 = r11
+            r5 = r0
+            goto La0
+        L72:
+            r7 = move-exception
+            r0 = 0
+            r13 = r0
+            goto L7f
+        L79:
+            r13 = move-exception
+            r0 = r13
+            throw r0     // Catch: java.lang.Throwable -> L7e
+        L7e:
+            r7 = move-exception
+        L7f:
+            r0 = r5
+            r12 = r0
+            r0 = r10
+            r11 = r0
+            r0 = r13
+            r1 = r9
+            $closeResource(r0, r1)     // Catch: java.lang.Throwable -> L9e
+            r0 = r5
+            r12 = r0
+            r0 = r10
+            r11 = r0
+            r0 = r7
+            throw r0     // Catch: java.lang.Throwable -> L9e
+        L96:
+            r13 = move-exception
+            r0 = r11
+            r5 = r0
+            goto Laa
+        L9e:
+            r13 = move-exception
+        La0:
+            r0 = r5
+            r12 = r0
+            r0 = r13
+            r11 = r0
+            r0 = r13
+            throw r0     // Catch: java.lang.Throwable -> L96
+        Laa:
+            r0 = r12
+            r11 = r0
+            r0 = r5
+            r1 = r8
+            $closeResource(r0, r1)     // Catch: java.lang.Throwable -> Lbb
+            r0 = r12
+            r11 = r0
+            r0 = r13
+            throw r0     // Catch: java.lang.Throwable -> Lbb
+        Lbb:
+            r5 = move-exception
+        Lbc:
+            java.lang.String r0 = "BenesseExtensionService"
+            java.lang.String r1 = "----- Exception occurred! -----"
+            r2 = r5
+            int r0 = android.util.Log.e(r0, r1, r2)
+        Lc6:
+            goto L177
+        Lc9:
+            r0 = r5
+            r11 = r0
+            java.io.FileReader r0 = new java.io.FileReader     // Catch: java.lang.Throwable -> L16c
+            r10 = r0
+            r0 = r5
+            r11 = r0
+            r0 = r10
+            java.io.File r1 = com.mediatek.server.BenesseExtensionService.SYSFILE_FTS_PARM_REJECT     // Catch: java.lang.Throwable -> L16c
+            r0.<init>(r1)     // Catch: java.lang.Throwable -> L16c
+            r0 = r5
+            r12 = r0
+            r0 = r8
+            r11 = r0
+            java.io.BufferedReader r0 = new java.io.BufferedReader     // Catch: java.lang.Throwable -> L14f
+            r14 = r0
+            r0 = r5
+            r12 = r0
+            r0 = r8
+            r11 = r0
+            r0 = r14
+            r1 = r10
+            r0.<init>(r1)     // Catch: java.lang.Throwable -> L14f
+            r0 = r14
+            java.lang.String r0 = r0.readLine()     // Catch: java.lang.Throwable -> L12b
+            r11 = r0
+            r0 = 0
+            r1 = r14
+            $closeResource(r0, r1)     // Catch: java.lang.Throwable -> L11c
+            r0 = 0
+            r1 = r10
+            $closeResource(r0, r1)     // Catch: java.lang.Throwable -> L10c
+            goto L177
+        L10c:
+            r5 = move-exception
+            goto L16d
+        L110:
+            r13 = move-exception
+            r0 = r11
+            r12 = r0
+            r0 = r9
+            r5 = r0
+            goto L15b
+        L11c:
+            r13 = move-exception
+            r0 = r11
+            r5 = r0
+            goto L151
+        L124:
+            r13 = move-exception
+            r0 = 0
+            r7 = r0
+            goto L130
+        L12b:
+            r7 = move-exception
+            r0 = r7
+            throw r0     // Catch: java.lang.Throwable -> L12e
+        L12e:
+            r13 = move-exception
+        L130:
+            r0 = r5
+            r12 = r0
+            r0 = r8
+            r11 = r0
+            r0 = r7
+            r1 = r14
+            $closeResource(r0, r1)     // Catch: java.lang.Throwable -> L14f
+            r0 = r5
+            r12 = r0
+            r0 = r8
+            r11 = r0
+            r0 = r13
+            throw r0     // Catch: java.lang.Throwable -> L14f
+        L147:
+            r13 = move-exception
+            r0 = r11
+            r5 = r0
+            goto L15b
+        L14f:
+            r13 = move-exception
+        L151:
+            r0 = r5
+            r12 = r0
+            r0 = r13
+            r11 = r0
+            r0 = r13
+            throw r0     // Catch: java.lang.Throwable -> L147
+        L15b:
+            r0 = r12
+            r11 = r0
+            r0 = r5
+            r1 = r10
+            $closeResource(r0, r1)     // Catch: java.lang.Throwable -> L16c
+            r0 = r12
+            r11 = r0
+            r0 = r13
+            throw r0     // Catch: java.lang.Throwable -> L16c
+        L16c:
+            r5 = move-exception
+        L16d:
+            java.lang.String r0 = "BenesseExtensionService"
+            java.lang.String r1 = "----- Exception occurred! -----"
+            r2 = r5
+            int r0 = android.util.Log.e(r0, r1, r2)
+        L177:
+            r0 = r11
+            int r0 = java.lang.Integer.parseInt(r0)
+            r15 = r0
+            r0 = r15
+            r6 = r0
+            r0 = r15
+            r1 = 4
+            if (r0 != r1) goto L189
+            r0 = 0
+            r6 = r0
+        L189:
+            r0 = r6
+            return r0
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.mediatek.server.BenesseExtensionService.getPalmrejectSize():int");
+    }
+
+    private int getPenBattery() {
+        if (this.mStsExtensionService != null) {
+            try {
+                return this.mStsExtensionService.getPenBattery();
+            } catch (Throwable th) {
+                Log.e(TAG, "----- Exception occurred! -----", th);
+                return 0;
+            }
+        }
+        return 0;
+    }
+
+    private String getTouchpanelVersion() {
+        if (this.mStsExtensionService != null) {
+            try {
+                return this.mStsExtensionService.getTouchpanelVersion();
+            } catch (Throwable th) {
+                Log.e(TAG, "----- Exception occurred! -----", th);
+                return "";
+            }
+        }
+        return "";
+    }
+
     private UpdateParams getUpdateParams(String str, String str2) {
         boolean z;
         UpdateParams updateParams = new UpdateParams();
@@ -420,6 +764,29 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
     }
 
+    private boolean setPalmrejectSize(int i) {
+        boolean z = false;
+        if (i < 0 || 3 < i) {
+            return false;
+        }
+        int i2 = 4;
+        if (this.tp_type == 0) {
+            if (i != 0) {
+                i2 = i;
+            }
+            SystemProperties.set("nvt.set_parm_rejection", String.valueOf(i2));
+        } else {
+            if (i != 0) {
+                i2 = i;
+            }
+            SystemProperties.set("fts.set_parm_rejection", String.valueOf(i2));
+        }
+        if (i == getPalmrejectSize()) {
+            z = true;
+        }
+        return z;
+    }
+
     /* JADX INFO: Access modifiers changed from: private */
     public void updateBrowserEnabled() {
         int i = 2;
@@ -437,6 +804,18 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
     }
 
+    private boolean updateTouchpanelFw(String str) {
+        if (this.mStsExtensionService != null) {
+            try {
+                return this.mStsExtensionService.updateTouchpanelFw(str);
+            } catch (Throwable th) {
+                Log.e(TAG, "----- Exception occurred! -----", th);
+                return false;
+            }
+        }
+        return false;
+    }
+
     /* JADX INFO: Access modifiers changed from: private */
     public void updateTraceurEnabled() {
         if (getDchaStateInternal() != 0) {
@@ -448,7 +827,6 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
     }
 
-    @Override // android.os.IBenesseExtensionService
     public boolean checkPassword(String str) {
         byte[] bArr;
         MessageDigest messageDigest;
@@ -500,7 +878,6 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         return equals;
     }
 
-    @Override // android.os.IBenesseExtensionService
     public int getDchaState() {
         long clearCallingIdentity = Binder.clearCallingIdentity();
         try {
@@ -510,7 +887,6 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
     }
 
-    @Override // android.os.IBenesseExtensionService
     public int getInt(String str) {
         Object[] objArr;
         if (str == null) {
@@ -526,6 +902,13 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
                     }
                     objArr = -1;
                     break;
+                case 141985806:
+                    if (str.equals("bc:touchpanel:palmreject:size")) {
+                        objArr = 7;
+                        break;
+                    }
+                    objArr = -1;
+                    break;
                 case 367025166:
                     if (str.equals(BC_NIGHTCOLOR_MAX)) {
                         objArr = 2;
@@ -536,6 +919,13 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
                 case 367025404:
                     if (str.equals(BC_NIGHTCOLOR_MIN)) {
                         objArr = 3;
+                        break;
+                    }
+                    objArr = -1;
+                    break;
+                case 562531059:
+                    if (str.equals("bc:pen:battery")) {
+                        objArr = 6;
                         break;
                     }
                     objArr = -1;
@@ -578,15 +968,24 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
                     return this.mColorDisplayController.getColorTemperature();
                 case 5:
                     return Settings.System.getInt(this.mContext.getContentResolver(), BC_PASSWORD_HIT_FLAG, 0);
-                default:
-                    return -1;
+                case 6:
+                    if (!"TAB-A05-BD".equals(Build.PRODUCT)) {
+                        return getPenBattery();
+                    }
+                    break;
+                case 7:
+                    if (!"TAB-A05-BD".equals(Build.PRODUCT)) {
+                        return getPalmrejectSize();
+                    }
+                    break;
             }
+            Binder.restoreCallingIdentity(clearCallingIdentity);
+            return -1;
         } finally {
             Binder.restoreCallingIdentity(clearCallingIdentity);
         }
     }
 
-    @Override // android.os.IBenesseExtensionService
     public String getString(String str) {
         if (str == null) {
             return null;
@@ -594,21 +993,49 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         long clearCallingIdentity = Binder.clearCallingIdentity();
         boolean z = true;
         try {
-            int hashCode = str.hashCode();
-            if (hashCode != -1125691405) {
-                if (hashCode != 94655307) {
-                    if (hashCode != 600943506) {
-                        if (hashCode == 1361443174 && str.equals(BC_TP_FW_VERSION)) {
-                            z = true;
-                        }
-                    } else if (str.equals(BC_DT_FW_VERSION)) {
+            switch (str.hashCode()) {
+                case -1149331608:
+                    if (str.equals(BC_TP_LCD_TYPE)) {
                         z = true;
+                        break;
                     }
-                } else if (str.equals(BC_MAC_ADDRESS)) {
-                    z = false;
-                }
-            } else if (str.equals(BC_SERIAL_NO)) {
-                z = true;
+                    break;
+                case -1125691405:
+                    if (str.equals(BC_SERIAL_NO)) {
+                        z = true;
+                        break;
+                    }
+                    break;
+                case 94655307:
+                    if (str.equals(BC_MAC_ADDRESS)) {
+                        z = false;
+                        break;
+                    }
+                    break;
+                case 600943506:
+                    if (str.equals(BC_DT_FW_VERSION)) {
+                        z = true;
+                        break;
+                    }
+                    break;
+                case 681159668:
+                    if (str.equals(BC_NVT_TP_FW_VERSION)) {
+                        z = true;
+                        break;
+                    }
+                    break;
+                case 888384667:
+                    if (str.equals(BC_FTS_TP_FW_VERSION)) {
+                        z = true;
+                        break;
+                    }
+                    break;
+                case 1361443174:
+                    if (str.equals(BC_TP_FW_VERSION)) {
+                        z = true;
+                        break;
+                    }
+                    break;
             }
             switch (z) {
                 case false:
@@ -626,18 +1053,37 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
                 case true:
                     return Build.getSerial();
                 case true:
-                    return getFirmwareVersion(SYSFILE_TP_VERSION);
+                    return !"TAB-A05-BD".equals(Build.PRODUCT) ? getTouchpanelVersion() : getFirmwareVersion(SYSFILE_TP_VERSION);
                 case true:
-                    return getFirmwareVersion(SYSFILE_DT_VERSION);
-                default:
-                    return null;
+                    if (!"TAB-A05-BD".equals(Build.PRODUCT)) {
+                        break;
+                    } else {
+                        return getFirmwareVersion(SYSFILE_DT_VERSION);
+                    }
+                case true:
+                    if (!"TAB-A05-BD".equals(Build.PRODUCT)) {
+                        return getTouchpanelVersion();
+                    }
+                    break;
+                case true:
+                    if (!"TAB-A05-BD".equals(Build.PRODUCT)) {
+                        return getTouchpanelVersion();
+                    }
+                    break;
+                case true:
+                    if (!"TAB-A05-BD".equals(Build.PRODUCT)) {
+                        return getLcdType();
+                    }
+                    break;
             }
+            Binder.restoreCallingIdentity(clearCallingIdentity);
+            return null;
         } finally {
             Binder.restoreCallingIdentity(clearCallingIdentity);
         }
     }
 
-    @Override // android.os.IBenesseExtensionService
+    /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
     public boolean putInt(String str, int i) {
         boolean z;
         boolean z2 = false;
@@ -646,27 +1092,45 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
         long clearCallingIdentity = Binder.clearCallingIdentity();
         try {
-            int hashCode = str.hashCode();
-            if (hashCode == -286987330) {
-                if (str.equals(BC_NIGHTMODE_ACTIVE)) {
+            switch (str.hashCode()) {
+                case -286987330:
+                    if (str.equals(BC_NIGHTMODE_ACTIVE)) {
+                        z = true;
+                        break;
+                    }
                     z = true;
-                }
-                z = true;
-            } else if (hashCode == 1209732899) {
-                if (str.equals(BC_NIGHTCOLOR_CURRENT)) {
+                    break;
+                case 141985806:
+                    if (str.equals("bc:touchpanel:palmreject:size")) {
+                        z = true;
+                        break;
+                    }
                     z = true;
-                }
-                z = true;
-            } else if (hashCode != 1359997191) {
-                if (hashCode == 1664403245 && str.equals(BC_PASSWORD_HIT_FLAG)) {
+                    break;
+                case 1209732899:
+                    if (str.equals(BC_NIGHTCOLOR_CURRENT)) {
+                        z = true;
+                        break;
+                    }
                     z = true;
-                }
-                z = true;
-            } else {
-                if (str.equals(BC_COMPATSCREEN)) {
-                    z = false;
-                }
-                z = true;
+                    break;
+                case 1359997191:
+                    if (str.equals(BC_COMPATSCREEN)) {
+                        z = false;
+                        break;
+                    }
+                    z = true;
+                    break;
+                case 1664403245:
+                    if (str.equals(BC_PASSWORD_HIT_FLAG)) {
+                        z = true;
+                        break;
+                    }
+                    z = true;
+                    break;
+                default:
+                    z = true;
+                    break;
             }
             switch (z) {
                 case false:
@@ -687,9 +1151,14 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
                     Settings.System.putInt(this.mContext.getContentResolver(), BC_PASSWORD_HIT_FLAG, i);
                     Binder.restoreCallingIdentity(clearCallingIdentity);
                     return true;
-                default:
-                    return false;
+                case true:
+                    if (!"TAB-A05-BD".equals(Build.PRODUCT)) {
+                        return setPalmrejectSize(i);
+                    }
+                    break;
             }
+            Binder.restoreCallingIdentity(clearCallingIdentity);
+            return false;
         } finally {
             Binder.restoreCallingIdentity(clearCallingIdentity);
         }
@@ -703,25 +1172,39 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         boolean z = true;
         try {
             int hashCode = str.hashCode();
-            if (hashCode != 1247406799) {
-                if (hashCode == 1964675707 && str.equals(BC_TP_FW_UPDATE)) {
-                    z = false;
+            if (hashCode != 1111447085) {
+                if (hashCode != 1247406799) {
+                    if (hashCode == 1964675707 && str.equals(BC_TP_FW_UPDATE)) {
+                        z = false;
+                    }
+                } else if (str.equals(BC_DT_FW_UPDATE)) {
+                    z = true;
                 }
-            } else if (str.equals(BC_DT_FW_UPDATE)) {
+            } else if (str.equals(BC_NVT_TP_FW_UPDATE)) {
                 z = true;
             }
             switch (z) {
                 case false:
                 case true:
-                    String replaceFirst = str2.replaceFirst("^/sdcard/", "/data/media/0/");
-                    if (!new File(replaceFirst).isFile()) {
-                        Log.e(TAG, "----- putString() : invalid file. name[" + str + "] value[" + str2 + "] -----");
-                        break;
-                    } else if (!checkHexFile(replaceFirst)) {
-                        break;
-                    } else {
-                        return executeFwUpdate(getUpdateParams(str, replaceFirst));
+                    if ("TAB-A05-BD".equals(Build.PRODUCT)) {
+                        String replaceFirst = str2.replaceFirst("^/sdcard/", "/data/media/0/").replaceFirst("^/storage/emulated/0/", "/data/media/0/");
+                        if (!new File(replaceFirst).isFile()) {
+                            Log.e(TAG, "----- putString() : invalid file. name[" + str + "] value[" + str2 + "] -----");
+                            break;
+                        } else if (!checkHexFile(replaceFirst)) {
+                            break;
+                        } else {
+                            return executeFwUpdate(getUpdateParams(str, replaceFirst));
+                        }
+                    } else if (BC_TP_FW_UPDATE.equals(str)) {
+                        return updateTouchpanelFw(str2);
                     }
+                    break;
+                case true:
+                    if (!"TAB-A05-BD".equals(Build.PRODUCT)) {
+                        return updateTouchpanelFw(str2);
+                    }
+                    break;
             }
             Binder.restoreCallingIdentity(clearCallingIdentity);
             return false;
@@ -730,7 +1213,6 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
     }
 
-    @Override // android.os.IBenesseExtensionService
     public void setDchaState(int i) {
         long clearCallingIdentity = Binder.clearCallingIdentity();
         try {
