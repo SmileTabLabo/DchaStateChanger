@@ -73,6 +73,17 @@ public class BenesseExtension {
         }
     }
 
+    public static boolean putString(String str, String str2) {
+        if (getBenesseExtensionService() == null) {
+            return false;
+        }
+        try {
+            return mBenesseExtensionService.putString(str, str2);
+        } catch (RemoteException e) {
+            return false;
+        }
+    }
+
     public static void setDchaState(int i) {
         if (getBenesseExtensionService() == null) {
             return;

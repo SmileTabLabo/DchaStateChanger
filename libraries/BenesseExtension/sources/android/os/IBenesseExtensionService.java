@@ -5,11 +5,12 @@ public interface IBenesseExtensionService extends IInterface {
     /* loaded from: BenesseExtension.jar:android/os/IBenesseExtensionService$Stub.class */
     public static abstract class Stub extends Binder implements IBenesseExtensionService {
         private static final String DESCRIPTOR = "android.os.IBenesseExtensionService";
-        static final int TRANSACTION_checkPassword = 6;
+        static final int TRANSACTION_checkPassword = 7;
         static final int TRANSACTION_getDchaState = 1;
-        static final int TRANSACTION_getInt = 4;
+        static final int TRANSACTION_getInt = 5;
         static final int TRANSACTION_getString = 3;
-        static final int TRANSACTION_putInt = 5;
+        static final int TRANSACTION_putInt = 6;
+        static final int TRANSACTION_putString = 4;
         static final int TRANSACTION_setDchaState = 2;
 
         /* JADX INFO: Access modifiers changed from: private */
@@ -125,6 +126,30 @@ public interface IBenesseExtensionService extends IInterface {
             }
 
             @Override // android.os.IBenesseExtensionService
+            public boolean putString(String str, String str2) throws RemoteException {
+                Parcel obtain = Parcel.obtain();
+                Parcel obtain2 = Parcel.obtain();
+                try {
+                    obtain.writeInterfaceToken(Stub.DESCRIPTOR);
+                    obtain.writeString(str);
+                    obtain.writeString(str2);
+                    boolean z = false;
+                    this.mRemote.transact(Stub.TRANSACTION_putString, obtain, obtain2, 0);
+                    obtain2.readException();
+                    if (obtain2.readInt() != 0) {
+                        z = Stub.TRANSACTION_getDchaState;
+                    }
+                    obtain2.recycle();
+                    obtain.recycle();
+                    return z;
+                } catch (Throwable th) {
+                    obtain2.recycle();
+                    obtain.recycle();
+                    throw th;
+                }
+            }
+
+            @Override // android.os.IBenesseExtensionService
             public void setDchaState(int i) throws RemoteException {
                 Parcel obtain = Parcel.obtain();
                 Parcel obtain2 = Parcel.obtain();
@@ -181,19 +206,25 @@ public interface IBenesseExtensionService extends IInterface {
                     parcel2.writeNoException();
                     parcel2.writeString(string);
                     return true;
-                case TRANSACTION_getInt /* 4 */:
+                case TRANSACTION_putString /* 4 */:
+                    parcel.enforceInterface(DESCRIPTOR);
+                    boolean putString = putString(parcel.readString(), parcel.readString());
+                    parcel2.writeNoException();
+                    parcel2.writeInt(putString ? 1 : 0);
+                    return true;
+                case TRANSACTION_getInt /* 5 */:
                     parcel.enforceInterface(DESCRIPTOR);
                     int i3 = getInt(parcel.readString());
                     parcel2.writeNoException();
                     parcel2.writeInt(i3);
                     return true;
-                case TRANSACTION_putInt /* 5 */:
+                case TRANSACTION_putInt /* 6 */:
                     parcel.enforceInterface(DESCRIPTOR);
                     boolean putInt = putInt(parcel.readString(), parcel.readInt());
                     parcel2.writeNoException();
                     parcel2.writeInt(putInt ? 1 : 0);
                     return true;
-                case TRANSACTION_checkPassword /* 6 */:
+                case TRANSACTION_checkPassword /* 7 */:
                     parcel.enforceInterface(DESCRIPTOR);
                     boolean checkPassword = checkPassword(parcel.readString());
                     parcel2.writeNoException();
@@ -214,6 +245,8 @@ public interface IBenesseExtensionService extends IInterface {
     String getString(String str) throws RemoteException;
 
     boolean putInt(String str, int i) throws RemoteException;
+
+    boolean putString(String str, String str2) throws RemoteException;
 
     void setDchaState(int i) throws RemoteException;
 }

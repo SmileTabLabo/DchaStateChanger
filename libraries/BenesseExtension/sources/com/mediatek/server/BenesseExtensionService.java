@@ -827,6 +827,7 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
     }
 
+    @Override // android.os.IBenesseExtensionService
     public boolean checkPassword(String str) {
         byte[] bArr;
         MessageDigest messageDigest;
@@ -878,6 +879,7 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         return equals;
     }
 
+    @Override // android.os.IBenesseExtensionService
     public int getDchaState() {
         long clearCallingIdentity = Binder.clearCallingIdentity();
         try {
@@ -887,6 +889,7 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
     }
 
+    @Override // android.os.IBenesseExtensionService
     public int getInt(String str) {
         Object[] objArr;
         if (str == null) {
@@ -986,6 +989,7 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
     }
 
+    @Override // android.os.IBenesseExtensionService
     public String getString(String str) {
         if (str == null) {
             return null;
@@ -1084,6 +1088,7 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
+    @Override // android.os.IBenesseExtensionService
     public boolean putInt(String str, int i) {
         boolean z;
         boolean z2 = false;
@@ -1164,6 +1169,7 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
     }
 
+    @Override // android.os.IBenesseExtensionService
     public boolean putString(String str, String str2) {
         if (str == null || str2 == null) {
             return false;
@@ -1213,6 +1219,7 @@ public class BenesseExtensionService extends IBenesseExtensionService.Stub {
         }
     }
 
+    @Override // android.os.IBenesseExtensionService
     public void setDchaState(int i) {
         long clearCallingIdentity = Binder.clearCallingIdentity();
         try {
