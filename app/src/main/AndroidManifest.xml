@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="jp.co.benesse.touch.setuplogin">
 
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
-        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
 
     <application
         android:label="DchaState Changer"
@@ -25,15 +24,23 @@
 
         <activity
             android:name=".DchaStateChanger"
-            android:enabled="false"
-            android:excludeFromRecents="true"
             android:exported="true"
-            android:icon="@android:mipmap/sym_def_app_icon"
             android:launchMode="singleInstance"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Dev"
+            android:enabled="false"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:icon="@drawable/ic_settings_development_alpha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
