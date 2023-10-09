@@ -3,15 +3,16 @@ plugins {
 }
 
 android {
-    compileSdk 28
+    compileSdk 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId 'jp.co.benesse.touch.setuplogin'
         minSdk 28
+        //noinspection ExpiredTargetSdkVersion
         targetSdk 22
-        versionCode 25
-        versionName "2.5.0"
+        versionCode 26
+        versionName "2.6.0"
     }
 
     signingConfigs {
@@ -38,6 +39,8 @@ android {
         }
     }
 }
+
 dependencies {
     compileOnly files('libs/BenesseExtension.jar')
+    implementation files('libs/DchaService.jar')
 }
