@@ -8,12 +8,6 @@ on:
       - 'gradle/**'
       - '*.gradle'
   workflow_dispatch:
-    inputs:
-      release:
-        description: 'Release'
-        type: boolean
-        required: true
-        default: false
 
 jobs:
   build:
@@ -49,12 +43,3 @@ jobs:
         with:
           name: DchaStateChanger(v${{ env.version }}@${{ env.commit }})
           path: app/build/outputs/apk/release/app-release.apk
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: github.event.inputs.release == 'true'
-        with:
-          tag_name: v${{ env.version }}
-          draft: true
-          prerelease: false
-          files: app/build/outputs/apk/release/app-release.apk
