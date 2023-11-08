@@ -7,6 +7,9 @@
 
 [**こちら**](HowTo.md)をご覧ください
 
+代替手段として､ [**Nova Direct Installer**](//github.com/SmileTabLabo/NovaDirectInstaller) があります｡  
+Charlesを使用せずにmicroSDカードのみで改造出来るので､ 是非､ そちらもご確認下さい｡
+
 ## 改造後について
 このアプリには､ 設定アプリから **DchaState** を変更できる機能があります｡  
 
