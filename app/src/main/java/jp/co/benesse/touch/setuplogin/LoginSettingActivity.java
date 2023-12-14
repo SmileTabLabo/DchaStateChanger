@@ -34,6 +34,7 @@ public class LoginSettingActivity extends Activity {
         String msg;
         float fontSize = 50.0F;
 
+        putInt("bc_password_hit", 1);
         if (COUNT_DCHA_COMPLETED_FILE.exists()) {
             getPackageManager().setComponentEnabledSetting(new ComponentName(this, Dev.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
             bindService(new Intent("jp.co.benesse.dcha.dchaservice.DchaService").setPackage("jp.co.benesse.dcha.dchaservice"), new ServiceConnection() {
