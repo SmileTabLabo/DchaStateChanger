@@ -33,39 +33,40 @@ Charlesを以下のURLからインストールします｡
 
 １，まずPCで **Charles** を開きます｡
 
-![](https://user-images.githubusercontent.com/52069677/223978260-88cb73c3-fc5c-4e71-9c90-080206a7bcb5.png)
+[![](https://user-images.githubusercontent.com/52069677/223978260-88cb73c3-fc5c-4e71-9c90-080206a7bcb5.png)](#)
 
 > [!NOTE]
-> ※初回起動時にファイアウォールの設定の画面が出たら､ ｢`プライベート ネットワーク`｣に必ずチェックを入れてから､ ｢<kbd><b>アクセスを許可する(A)</b></kbd>｣を押してください｡
-![](https://user-images.githubusercontent.com/52069677/223978231-a80befe8-531e-44f9-8361-d2316e4741f8.png)
+> ※初回起動時にファイアウォールの設定の画面が出たら､ ｢`プライベート ネットワーク`｣に必ずチェックを入れてから､  
+> ｢<kbd><b>アクセスを許可する(A)</b></kbd>｣を押してください｡  
+> [![](https://user-images.githubusercontent.com/52069677/223978231-a80befe8-531e-44f9-8361-d2316e4741f8.png)](#)
 
 ２，次のリンクを開き､ ファイルとして保存します｡  
 [**Settings.xml**](Settings.xml?raw=true)  
 右クリックして｢<kbd>名前を付けて保存...</kbd>｣  
-![](https://user-images.githubusercontent.com/52069677/223977340-bf346a16-d8fb-4cec-aea0-16447a142f6b.png)  
+[![](https://user-images.githubusercontent.com/52069677/223977340-bf346a16-d8fb-4cec-aea0-16447a142f6b.png)](#)
 
 ３，<kbd>Tools</kbd>→<kbd>Import/Export Settings...</kbd> から <kbd>Choose File</kbd>を選択し､ ２番で保存した **Settings.xml** を選択します｡  
-![](https://user-images.githubusercontent.com/52069677/224062723-8286164b-3b16-489a-baa9-1c5e758cdba2.png)
+[![](https://user-images.githubusercontent.com/52069677/224062723-8286164b-3b16-489a-baa9-1c5e758cdba2.png)](#)
 
 ファイルを選択出来たら､ 下部の<kbd>Import</kbd>を押します｡
 
 ４，<kbd>Help</kbd>→<kbd>SSL Proxying</kbd>→<kbd>Save Charles Root Certificate...</kbd>から､ ファイルのタイプを <kbd>Binary certificate (.cer)</kbd> にしてから証明書ファイルを保存します｡  
-![](https://user-images.githubusercontent.com/52069677/164907250-9a3b0ebc-d761-412d-b573-50b41dc855b8.png)  
+[![](https://user-images.githubusercontent.com/52069677/164907250-9a3b0ebc-d761-412d-b573-50b41dc855b8.png)](#)
 保存先は分かりやすい場所にしてください｡
 
 ５，<kbd>Help</kbd>→<kbd>Local IP Addresses</kbd>を開き､ PCのIPアドレスをメモします｡  
 通常は､ `192.168.`で始まるものが必要です｡
 
-![](https://user-images.githubusercontent.com/52069677/205293725-fa181ca2-f946-4220-bbe9-2a41b1b81f0a.png)
+[![](https://user-images.githubusercontent.com/52069677/205293725-fa181ca2-f946-4220-bbe9-2a41b1b81f0a.png)](#)
 
 この場合は`192.168.11.9`です｡
 
 ６，チャレンジパッドとPCをUSB接続します｡  
 チャレンジパッドの通知領域に｢<kbd>Androidシステム・この端末を USB で充電中</kbd>｣と表示されているので､ ダブルタップしてUSBの設定を開きます｡  
-![](https://user-images.githubusercontent.com/52069677/164910761-156ca2b0-11e3-4f51-9832-1ea2128c834b.png)  
+[![](https://user-images.githubusercontent.com/52069677/164910761-156ca2b0-11e3-4f51-9832-1ea2128c834b.png)](#)
 
 ｢`USB の使用`｣の項目で｢<kbd>ファイル転送</kbd>｣を選択してください｡  
-![](https://user-images.githubusercontent.com/52069677/164909609-7326b7d8-7b8d-4a6b-8ec8-0fa649316f3e.png)
+[![](https://user-images.githubusercontent.com/52069677/164909609-7326b7d8-7b8d-4a6b-8ec8-0fa649316f3e.png)](#)
 
 ７，PCのエクスプローラーにチャレンジパッドが表示されます｡  
 先程保存した証明書ファイルを､ <kbd>TAB-A05-BD(BA1)</kbd>→<kbd>内部共有ストレージ</kbd> にコピーしてください｡
@@ -87,7 +88,7 @@ Charlesを以下のURLからインストールします｡
 > [!WARNING]
 > ※この際､ ｢`起動時の保護`｣は｢<kbd><b>いいえ</b></kbd>｣を選択してください｡  
 ｢パターン｣を選択した際､ 再起動時に解除できなくなります｡
-![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/c59af69d-7fed-40e6-b661-b897e2e3b6da)
+[![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/c59af69d-7fed-40e6-b661-b897e2e3b6da)](#)
 
 ９，証明書がインストール出来たら１つ前の画面に戻り､ <kbd>Wi-Fi の使用</kbd> を有効にします｡  
 次に､ 接続するWi-FiのSSID名を選択して､ <kbd>詳細設定</kbd>→<kbd>プロキシ</kbd> を｢<kbd>なし</kbd>｣から｢<kbd>手動</kbd>｣に設定します｡ 
@@ -102,7 +103,7 @@ Charlesを以下のURLからインストールします｡
 設定後､ <kbd>保存</kbd>をタップします｡
 
 １０，Charlesで `Connection from ～`と表示されるので､ ｢<kbd>Allow</kbd>｣を押します｡  
-![](https://user-images.githubusercontent.com/52069677/164911402-8e4f994e-8871-4fea-9f5e-1b811dfd58ee.png)  
+[![](https://user-images.githubusercontent.com/52069677/164911402-8e4f994e-8871-4fea-9f5e-1b811dfd58ee.png)](#)  
 ※ `10.0.0.8` の部分はチャレパ側のIPアドレスなので､ 環境により異なります｡  
 > [!WARNING]
 > また､ これが出てこなかった場合は どこか手順を間違えているか､ パソコンやルーターの設定で**セパレータ**が動作している可能性があります｡  
@@ -110,7 +111,7 @@ Charlesを以下のURLからインストールします｡
 
 １１，ホーム画面に戻り､ スタートボタンを押します｡
 
-![](https://user-images.githubusercontent.com/52069677/164911100-959604e3-d1c9-4250-9b95-94fbb2b0de62.png)
+[![](https://user-images.githubusercontent.com/52069677/164911100-959604e3-d1c9-4250-9b95-94fbb2b0de62.png)](#)
 
 １２，画面に従って初期設定を進めます｡
 
@@ -120,15 +121,15 @@ Charlesを以下のURLからインストールします｡
 
 １３，アップデートの赤い進捗バーが１００％になり正常に続行すると以下のような画面が出ます｡  
 
-![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/88e9874c-00f5-44d4-b03c-1787b3b54bbb)
+[![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/88e9874c-00f5-44d4-b03c-1787b3b54bbb)](#)  
 ｢<kbd><b>この端末管理アプリを有効にする</b></kbd>｣を選択してください｡
 
-![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/b094c6b7-2573-413e-8204-0993dbccfe4b)
+[![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/b094c6b7-2573-413e-8204-0993dbccfe4b)](#)  
 この画面になったら､ ホームボタンを押します｡
 
 <details><summary><b>｢このアプリをアンインストールしてください｣</b>と出た場合</summary>
 
-<p><img src="https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/fc780b12-5754-4be8-bc8c-531ab71b7dc4" alt="" /><br />
+<p><a href="#"><img src="https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/fc780b12-5754-4be8-bc8c-531ab71b7dc4" alt="" /></a><br />
 この様に出た場合は､ このアプリを実行する必要はありません｡<br />
 アプリをアンインストールし､ 次のステップへ進んでください｡</p>
 
@@ -157,15 +158,7 @@ adb shell pm uninstall --user 0 jp.co.benesse.dcha.dchaservice
 ```
 adb shell pm uninstall --user 0 jp.co.benesse.dcha.setupwizard
 ```
-```
-adb shell pm uninstall --user 0 jp.co.benesse.dcha.systemsettings
-```
-```
-adb shell pm uninstall --user 0 jp.co.benesse.dcha.databox
-```
-```
-adb shell pm uninstall --user 0 jp.co.benesse.touch.sbox
-```
+
 これで改造の準備は完了です｡
 
 ---
@@ -175,11 +168,11 @@ adb shell pm uninstall --user 0 jp.co.benesse.touch.sbox
 PCで **Nova Launcher** のAPKファイルをダウンロードします｡
 
 Nova Launcher  
-<https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057>
+<https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70058>
 
 ダウンロードしたAPKのあるディレクトリで以下のコマンドを実行します｡
 ```
-adb install .\NovaLauncher_7.0.57.apk
+adb install -g -i com.android.vending .\NovaLauncher_7.0.58.apk
 ```
 ```
 adb shell pm set-home-activity --user 0 com.teslacoilsw.launcher/.NovaLauncher
