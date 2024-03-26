@@ -1,13 +1,11 @@
 # DchaState Changer
 旧名：**Cpad_dcha_3_changer**
 
-[![Build](https://github.com/SmileTabLabo/DchaStateChanger/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/mouseos/Cpad_dcha_3_changer/actions/workflows/build.yml)
-
 ## 改造方法 & 注意事項
 
 [**こちら**](HowTo.md)をご覧ください
 
-代替手段として､ [**Nova Direct Installer**](//github.com/SmileTabLabo/NovaDirectInstaller) があります｡  
+代替手段として､ [**App Direct Installer**](https://github.com/s1204IT/AppDirectInstaller) があります｡  
 Charlesを使用せずにmicroSDカードのみで改造出来るので､ 是非､ そちらもご確認下さい｡
 
 ## 改造後について

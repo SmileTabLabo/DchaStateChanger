@@ -172,7 +172,7 @@ Nova Launcher
 
 ダウンロードしたAPKのあるディレクトリで以下のコマンドを実行します｡
 ```
-adb install -g -i com.android.vending .\NovaLauncher_7.0.58.apk
+adb install -g -i com.android.vending NovaLauncher_7.0.58.apk
 ```
 ```
 adb shell pm set-home-activity --user 0 com.teslacoilsw.launcher/.NovaLauncher
