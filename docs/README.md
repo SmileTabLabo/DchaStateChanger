@@ -5,7 +5,7 @@
 
 [**こちら**](HowTo.md)をご覧ください
 
-代替手段として､ [**App Direct Installer**](https://github.com/s1204IT/AppDirectInstaller) があります｡  
+代替手段として､ [**Nova Direct Installer**](https://github.com/SmileTabLabo/NovaDirectInstaller) があります｡  
 Charlesを使用せずにmicroSDカードのみで改造出来るので､ 是非､ そちらもご確認下さい｡
 
 ## 改造後について

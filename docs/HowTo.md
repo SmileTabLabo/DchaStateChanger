@@ -8,7 +8,7 @@
 ## お知らせ
 
 > [!TIP]
-> Charles を使用せずに microSDカードを使用して改造できる [**Nova Direct Installer**](//github.com/SmileTabLabo/NovaDirectInstaller) がリリースされました｡  
+> Charles を使用せずに microSDカードを使用して改造できる [**Nova Direct Installer**](https://github.com/SmileTabLabo/NovaDirectInstaller) がリリースされました｡  
 是非､ そちらも併せてご確認下さい｡
 
 ---
